@@ -29,14 +29,14 @@ After completing this lab, you will be able to:
 An Eclipse launcher widow will appear asking to select a directory as workspace
 1. Click on the **Browse…** button, browse to **/home/centos/aws-fpga/rtl\_kernel**, click **OK** twice
     <p align="center">
-    <img src ="../images/workspace.png"/>
+    <img src ="./images/workspace.png"/>
     </p>
     <p align = "center">
     <i>Selecting a workspace</i>
     </p>
 The Xilinx SDx IDE window will be displayed
     <p align="center">
-    <img src ="../images/SDX_IDE.png"/>
+    <img src ="./images/SDX_IDE.png"/>
     </p>
     <p align = "center">
     <i>The SDx IDE window</i>
@@ -44,7 +44,7 @@ The Xilinx SDx IDE window will be displayed
 1. Click on the **Add Custom Platform** link on the _Welcome_ page
 1. Click on the **Add Custom Platform** button, browse to **/home/centos/aws-fpga/SDAccel/aws\_platfom/xilinx\_aws-vu9p-f1-04261818\_dynamic\_5\_0**, and click **OK**
     <p align="center">
-    <img src ="../images/FigPlatform.png"/>
+    <img src ="./images/FigPlatform.png"/>
     </p>
     <p align = "center">
     <i>Hardware platform selected</i>
@@ -58,7 +58,7 @@ Note the aws-vu9p-f1-04261818 board is displayed as the hardware platform
 1. Click **Next** with Linux on x86 as the System Configuration and OpenCL as the Runtime options
 1. Select **Empty Application** from the _Available Templates_ pane and click **Finish**
     <p align="center">
-    <img src ="../images/FigEmptyProjectTemplate.png"/>
+    <img src ="./images/FigEmptyProjectTemplate.png"/>
     </p>
     <p align = "center">
     <i>Selecting an application template</i>
@@ -69,7 +69,7 @@ Note the aws-vu9p-f1-04261818 board is displayed as the hardware platform
 1. Select **Xilinx &gt; Create RTL Kernel…**  
 Note that the Create RTL Kernel Wizard will be invoked displaying the Welcome screen
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-4.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-4.png"/>
     </p>
     <p align = "center">
     <i>Welcome screen of the RTL Kernel Wizard</i>
@@ -77,7 +77,7 @@ Note that the Create RTL Kernel Wizard will be invoked displaying the Welcome sc
 1. Click **Next**
 1. Change _Kernel_ name to **KVAdd**, (for Kernel Vector Addition), _Kernel vendor_ to **Xilinx** leaving the _Kernel library_ and _Number of clocks_ to the default values
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-5.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-5.png"/>
     </p>
     <p align = "center">
     <i>Setting general settings including name and number of clocks</i>
@@ -85,7 +85,7 @@ Note that the Create RTL Kernel Wizard will be invoked displaying the Welcome sc
 1. Click **Next**
 1. Click **Next** with _Number of scalar kernel input arguments_ default value being **1** and the _Argument type_ as **unit**
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-6.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-6.png"/>
     </p>
     <p align = "center">
     <i>Selecting number of scalar arguments</i>
@@ -93,7 +93,7 @@ Note that the Create RTL Kernel Wizard will be invoked displaying the Welcome sc
 1. We will have three arguments to the kernel (2 input and 1 output) which will be passed through Global Memory. Set _Number of AXI master interfaces_ to be **3**
 1. Keep the width of each AXI master data width to **64** (note this is specified in bytes so this will give a width of 512 bits), name **A** as the argument name to m00\_axi, **B** to m01\_axi, and **Res** to m02\_axi
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-7.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-7.png"/>
     </p>
     <p align = "center">
     <i>Selecting number of AXI master interfaces, their widths, and naming them</i>
@@ -101,7 +101,7 @@ Note that the Create RTL Kernel Wizard will be invoked displaying the Welcome sc
 1. Click **Next** and the summary page will be displayed showing a function prototype and register map  
 Note the control register is accessed via S\_AXI\_CONTROL interface and is at offset 0 and the scalar operand is at offset 0x10.  There are three master AXI interfaces being used.
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-8.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-8.png"/>
     </p>
     <p align = "center">
     <i>Summary of the design interface that will be created by the wizard</i>
@@ -109,7 +109,7 @@ Note the control register is accessed via S\_AXI\_CONTROL interface and is at of
 1. Click **OK** to close the wizard  
 Notice that a Vivado Project will be created and opened
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-9.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-9.png"/>
     </p>
     <p align = "center">
     <i>Vivado project created by the wizard</i>
@@ -118,7 +118,7 @@ Notice that a Vivado Project will be created and opened
 ### Analyze the design built by the RTL Kernel wizard
 1. Expand the hierarchy of the Design Sources in the Sources window and notice all the design sources, constraint file, and the basic testbench generated by the wizard
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-10.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-10.png"/>
     </p>
     <p align = "center">
     <i>Design hierarchy along with constraints and testbench files</i>
@@ -127,28 +127,28 @@ There is one module to handle the control signals ap\_start, ap\_done, and ap\_i
 1. Select **Flow Navigator &gt; RTL ANALYSIS &gt; Open Elaborated Design** which will analyze the design and open a schematic view. Click **OK**
 1. You should see two top-level blocks: example and control as seen below
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-11.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-11.png"/>
     </p>
     <p align = "center">
     <i>Top-level modules</i>
     </p>  
 1. Double-click on the example block and observe the three hierarchical Master AXI blocks
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-12.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-12.png"/>
     </p>
     <p align = "center">
     <i>Three master axi modules</i>
     </p>  
 1. Zoom in into the top section and see the control logic the wizard has generated to provide ap\_start, ap\_idle, and ap\_done signals
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-13.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-13.png"/>
     </p>
     <p align = "center">
     <i>Control logic generation</i>
     </p>  
 1. Traverse through one of the AXI interface blocks (m02) and observe that the example code it has generated consists of Read Master, Write Master, Read FIFO, Write FIFO, Read FIFO valid pipeline and an Adder
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-14.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-14.png"/>
     </p>
     <p align = "center">
     <i>A typical master axi hierarchical design generated by the wizard</i>
@@ -164,7 +164,7 @@ The packager will be run, generating the xo file which will be used in the desig
 1. Expand the _src_ folder under the **rtl\_kernel\_example**  
 Notice that _sdx\_rtl\_kernel\_wizard_ folder and its hierarchy has been added as the source, under which a Vivado project related folders/files are included (name starting with sdx\_rtl\_kernel…) and with wizard created KVAdd\_ex folder.
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-15.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-15.png"/>
     </p>
     <p align = "center">
     <i>The rtl kernel related files added to the src folder</i>
@@ -176,7 +176,7 @@ The _main_ function is defined on line 60. The number of words it transfers is 4
 1. Click on the **Add Binary Container** button (![alt tag](./images/Fig-binary_container.png))  
 Notice the _binary\_container\_1_ is added to the project. Since the design has RTL IP, the binary container does not have further hierarchy
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-16.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-16.png"/>
     </p>
     <p align = "center">
     <i>Adding binary container to the project</i>
@@ -184,7 +184,7 @@ Notice the _binary\_container\_1_ is added to the project. Since the design has 
 1. Click on the **Add Hardware Function button** (![alt tag](./images/Fig-hw_button.png)) and select _KVAdd_
 1. Either select **Project &gt; Build Configurations &gt; Set Active &gt; Emulation-HW** or click on the drop-down button of _Active build configuration_ and select **Emulation-HW**
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-17.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-17.png"/>
     </p>
     <p align = "center">
     <i>Selecting HW emulation build configuration</i>
@@ -194,28 +194,28 @@ This will build the project including rtl\_kernel\_example.exe file under the Em
 1. Select **Run &gt; Run Configurations…** to open the configurations window
 1. Click on the **Arguments** tab and notice that no binary container is assigned
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-18.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-18.png"/>
     </p>
     <p align = "center">
     <i>Unpopulated Arguments tab</i>
     </p>  
 1. Click on the **Automatically add binary container(s) to arguments** check box, click **Apply**, and then click **Run** to run the application
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-19.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-19.png"/>
     </p>
     <p align = "center">
     <i>Program argument assigned</i>
     </p>  
 1. The Console tab shows that the test was completed successfully along with the data transfer rate
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-20.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-20.png"/>
     </p>
     <p align = "center">
     <i>Hardware emulation run output</i>
     </p>  
 1. Double-click on the **Application Timeline** entry in the _Reports_ tab, expand all entries in the timeline graph, zoom appropriately and observe the transactions
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-21.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-21.png"/>
     </p>
     <p align = "center">
     <i>Timeline graph showing various activities in various region of the system</i>
@@ -236,7 +236,7 @@ This will build the project including rtl\_kernel\_example.exe file under the Em
    ```
 1. The FPGA bitstream will be downloaded and the host application will be executed showing output something like:
     <p align="center">
-    <img src ="../images/rtlkernel_lab/FigRTLKernelLab-22.png"/>
+    <img src ="./images/rtlkernel_lab/FigRTLKernelLab-22.png"/>
     </p>
     <p align = "center">
     <i>Execution output</i>

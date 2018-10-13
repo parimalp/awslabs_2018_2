@@ -45,21 +45,21 @@ Hardware emulation allow the verification of the functionality of the generated 
    ```  
 The application will be compiled, the xclbin and the helloworld.exe files will be generated. The application will be executed on CPU in software emulation mode showing output like:
     <p align="center">
-    <img src ="../images/makefile_lab/FigMakefileLab-1.png"/>
+    <img src ="./images/makefile_lab/FigMakefileLab-1.png"/>
     </p>
     <p align = "center">
     <i>Executing the application in software emulation mode</i>
     </p>
 1. Go to the _src_ folder and open the **host.cpp** file to see its content. Observe that the _DATA\_SIZE_ is defined as **256** (line 34), one operand (source\_a) is defined as constant **10** (line 46) and another operand (source\_b) as constant **32** (line 47), providing a result of 42
     <p align="center">
-    <img src ="../images/makefile_lab/FigMakefileLab-2.png"/>
+    <img src ="./images/makefile_lab/FigMakefileLab-2.png"/>
     </p>
     <p align = "center">
     <i>Program snippet</i>
     </p>
 1. Change the _DATA\_SIZE_ to **64**, _source\_a_ to **4**, and _source\_b_ to **15**; save the file and run the last two commands
     <p align="center">
-    <img src ="../images/makefile_lab/FigMakefileLab-3.png"/>
+    <img src ="./images/makefile_lab/FigMakefileLab-3.png"/>
     </p>
     <p align = "center">
     <i>Output after modifying the source file</i>
@@ -71,14 +71,14 @@ The application will be compiled, the xclbin and the helloworld.exe files will b
    ```
 The kernel called vector\_add will be created by calling Vivado High-Level Synthesis (HLS) tool, which will try to pipeline the kernel and try to achieve initiation interval of 1.  At the end of the HLS compilation an xo file is generated.
     <p align="center">
-    <img src ="../images/makefile_lab/FigMakefileLab-4.png"/>
+    <img src ="./images/makefile_lab/FigMakefileLab-4.png"/>
     </p>
     <p align = "center">
     <i>HLS being used to compile the kernel</i>
     </p>
 The host application will then be compiled, the xclbin and the helloworld.exe files will be generated. The application will be executed on the CPU in the hardware emulation mode showing the output and transfer rate like:
     <p align="center">
-    <img src ="../images/makefile_lab/FigMakefileLab-5.png"/>
+    <img src ="./images/makefile_lab/FigMakefileLab-5.png"/>
     </p>
     <p align = "center">
     <i>Execution output</i>
@@ -96,7 +96,7 @@ The host application will then be compiled, the xclbin and the helloworld.exe fi
    ```
 1.  The FPGA bitstream will be downloaded and the host application will be executed showing output something like:
     <p align="center">
-    <img src ="../images/makefile_lab/FigMakefileLab-6.png"/>
+    <img src ="./images/makefile_lab/FigMakefileLab-6.png"/>
     </p>
     <p align = "center">
     <i>Execution output</i>
