@@ -35,7 +35,7 @@ An Eclipse launcher widow will appear asking to select a directory as workspace
     </p>
     <p align = "center">
     <i>Selecting a workspace</i>
-    </p>  
+    </p>
 The Xilinx SDx IDE window will be displayed
     <p align="center">
     <img src ="./images/SDX_IDE.png"/>
