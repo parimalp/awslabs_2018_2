@@ -38,12 +38,12 @@ Software emulation allow functionality of the software application to be verifie
 Hardware emulation allow the verification of the functionality of the generated logic generated for the FPGA and the application working together.
 
 1. Execute the following commands in the terminal to build and run the *SW (CPU) emulation* flow for the SDAccel &#39;hello world&#39; example:
-   ```
+    ```
       cd helloworld_ocl
       make clean
       make check TARGETS=sw_emu DEVICES=$AWS_PLATFORM all
-   ```  
-The application will be compiled, the xclbin and the helloworld.exe files will be generated. The application will be executed on CPU in software emulation mode showing output like:
+    ```  
+    The application will be compiled, the xclbin and the helloworld.exe files will be generated. The application will be executed on CPU in software emulation mode showing output like:
     <p align="center">
     <img src ="./images/makefile_lab/FigMakefileLab-1.png"/>
     </p>
@@ -65,18 +65,18 @@ The application will be compiled, the xclbin and the helloworld.exe files will b
     <i>Output after modifying the source file</i>
     </p>
 1. Execute the following commands to build and run the *HW (hardware) emulation* flow for the &#39;hello world&#39; example:
-   ```
+    ```
       make clean
       make check TARGETS=hw_emu DEVICES=$AWS_PLATFORM all
-   ```
-The kernel called vector\_add will be created by calling Vivado High-Level Synthesis (HLS) tool, which will try to pipeline the kernel and try to achieve initiation interval of 1.  At the end of the HLS compilation an xo file is generated.
+    ```
+    The kernel called vector\_add will be created by calling Vivado High-Level Synthesis (HLS) tool, which will try to pipeline the kernel and try to achieve initiation interval of 1.  At the end of the HLS compilation an xo file is generated.
     <p align="center">
     <img src ="./images/makefile_lab/FigMakefileLab-4.png"/>
     </p>
     <p align = "center">
     <i>HLS being used to compile the kernel</i>
     </p>
-The host application will then be compiled, the xclbin and the helloworld.exe files will be generated. The application will be executed on the CPU in the hardware emulation mode showing the output and transfer rate like:
+    The host application will then be compiled, the xclbin and the helloworld.exe files will be generated. The application will be executed on the CPU in the hardware emulation mode showing the output and transfer rate like:
     <p align="center">
     <img src ="./images/makefile_lab/FigMakefileLab-5.png"/>
     </p>
