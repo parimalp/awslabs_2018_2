@@ -49,7 +49,7 @@ Each registered participant has been allocated a pre-configured EC2 F1 instance 
     <p align = "center">
     <i>Selecting a region</i>
     </p>  
-If you select different region other then where the accounts are created for then you may not see your instance as well as the source files which are pre-loaded for the workshop.
+    If you select different region other then where the accounts are created for then you may not see your instance as well as the source files which are pre-loaded for the workshop.
 1. Click on the **EC2** link on the dashboard or if not visible, then click on the _Services_ drop-down button and then click on **EC2**
     <p align="center">
     <img src ="./images/connecting_lab/FigConnectingLab-4-1.png"/>
@@ -65,7 +65,7 @@ If you select different region other then where the accounts are created for the
     <p align = "center">
     <i>Accessing Instances</i>
     </p>  
-You may see several instances
+    You may see several instances
 1. Enter your username in the filter field just below the **Launch Instance** button and hit enter
     <p align="center">
     <img src ="./images/connecting_lab/FigConnectingLab-6.png"/>
