@@ -36,7 +36,7 @@ An Eclipse launcher widow will appear asking to select a directory as workspace
     <p align = "center">
     <i>Selecting a workspace</i>
     </p>
-The Xilinx SDx IDE window will be displayed. Notice that the Welcome screen is gray-shaded as nothing has been done at this stage
+    The Xilinx SDx IDE window will be displayed. Notice that the Welcome screen is gray-shaded as nothing has been done at this stage
     <p align="center">
     <img src ="./images/SDX_IDE.png"/>
     </p>
@@ -52,9 +52,9 @@ The Xilinx SDx IDE window will be displayed. Notice that the Welcome screen is g
     <i>Hardware platform selected</i>
     </p>
 1. Click **Apply** and then click **OK**  
-Notice that the Welcome screen is no longer gray-shaded since a platform is already defined
+   Notice that the Welcome screen is no longer gray-shaded since a platform is already defined
 1. Click on the **Create SDx Project** link on the _Welcome_ page  
-The _Project Type_ page will be displayed 
+    The _Project Type_ page will be displayed 
 1. Select **Application** and click **Next**
 1. In the _New Project_&#39;s page enter **gui\_flow\_example** in the _Project name:_ field and click **Next**  
 Note the _aws-vu9p-f1-04261818_ under the board column is displayed 
@@ -67,7 +67,7 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
     <p align = "center">
     <i>Selecting an application template</i>
     </p>
-The project IDE will be displayed with six main windows: Project Explorer, Project Settings, Assistant, Outline, multi-tab console, and Emulation Console.
+    The project IDE will be displayed with six main windows: Project Explorer, Project Settings, Assistant, Outline, multi-tab console, and Emulation Console.
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-5.png"/>
     </p>
@@ -87,9 +87,9 @@ The project IDE will be displayed with six main windows: Project Explorer, Proje
     <i>Selecting SW emulation build configuration</i>
     </p>
 1. Either select **Project &gt; Build Project** or click on the build (![alt tag](./images/Fig-build.png)) button  
-This will build the project including gui\_flow\_example.exe file under the Emulation-SW directory
+    This will build the project including gui\_flow\_example.exe file under the Emulation-SW directory
 1. Run the application by clicking the Run button (![alt tag](./images/Fig-run.png))
-The application will be run and the output will be displayed in the Console tab
+    The application will be run and the output will be displayed in the Console tab
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-7.png"/>
     </p>
@@ -110,10 +110,10 @@ The application will be run and the output will be displayed in the Console tab
     <i>Selecting HW emulation build configuration</i>
     </p>
 1. Either select **Project &gt; Build Project** or click on the (![alt tag](./images/Fig-build.png)) button  
-This will build the project including gui\_flow\_example.exe file under the Emulation-HW directory
+    This will build the project including gui\_flow\_example.exe file under the Emulation-HW directory
 1. Select **Run &gt; Run Configurations…** to open the configurations window
 1. Click on the **Arguments** tab and notice that the _binary\_container\_1.xclbin_ is already assigned  
-If no argument was assigned then you would have to explicitly assign the **xclbin** by clicking on the _Automatically add binary container(s) to arguments_, and click **Apply**
+    If no argument was assigned then you would have to explicitly assign the **xclbin** by clicking on the _Automatically add binary container(s) to arguments_, and click **Apply**
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-9.png"/>
     </p>
@@ -137,7 +137,7 @@ If no argument was assigned then you would have to explicitly assign the **xclbi
     <p align = "center">
     <i>The Assistant tab content</i>
     </p>
-The window will open showing the Synthesis report for the **krnl\_vadd** accelerator.  It includes the target device information
+    The window will open showing the Synthesis report for the **krnl\_vadd** accelerator.  It includes the target device information
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-12.png"/>
     </p>
@@ -159,7 +159,7 @@ The window will open showing the Synthesis report for the **krnl\_vadd** acceler
     <i>Resource utilization</i>
     </p>
 1. Scrolling down further shows the Interface summary indicating various ports, width, protocol that they are part of, type of object, and parameter type they belong to.  
-As can be seen, there are three interfaces being used: control, s\_axi, and m\_axi. The s\_axi is 32-bit wide data, control provides necessary handshaking signals, and m\_axi has 32-bit data. The m\_axi is connected to gmem, the global memory which is DDR. The DDR memory uses 64-bit address.
+    As can be seen, there are three interfaces being used: control, s\_axi, and m\_axi. The s\_axi is 32-bit wide data, control provides necessary handshaking signals, and m\_axi has 32-bit data. The m\_axi is connected to gmem, the global memory which is DDR. The DDR memory uses 64-bit address.
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-15-1.png"/>  
     <img src ="./images/guiflow_lab/FigGUIflowLab-15-2.png"/>  
@@ -171,7 +171,7 @@ As can be seen, there are three interfaces being used: control, s\_axi, and m\_a
 
 ###  Review the profile summary report
 1. Double-click on the **Profile Summary** entry under **Emulation-HW &gt; gui\_flow\_example-Default** in the **Assistant** tab  
-Notice a multi-tab report window is opened. It has four tabs: the Top Operations, Kernels and Compute Units, the Data Transfers, and the OpenCL APIs. The Top Operations tab shows the device being used, the Global work size (1:1:1), and the Local work size (1:1:1). It also shows the kernel (krnl\_vadd) being used, the location of the kernel, beside the context ID.
+    Notice a multi-tab report window is opened. It has four tabs: the Top Operations, Kernels and Compute Units, the Data Transfers, and the OpenCL APIs. The Top Operations tab shows the device being used, the Global work size (1:1:1), and the Local work size (1:1:1). It also shows the kernel (krnl\_vadd) being used, the location of the kernel, beside the context ID.
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-16.png"/>
     </p>
