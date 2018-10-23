@@ -36,7 +36,7 @@ An Eclipse launcher widow will appear asking to select a directory as workspace
     <p align = "center">
     <i>Selecting a workspace</i>
     </p>
-The Xilinx SDx IDE window will be displayed
+1. The Xilinx SDx IDE window will be displayed
     <p align="center">
     <img src ="./images/SDX_IDE.png"/>
     </p>
@@ -101,7 +101,7 @@ The project IDE will be displayed with six main windows: Project Explorer, Proje
 1. In the _Outline_ viewer, click **idct** to look up the function  
 The idct function is the core algorithm implemented in the custom hardware accelerator. It is a computationally intensive function that can be highly paralleled on the FPGA, providing significant acceleration over a CPU-based implementation.  
 
-Review other functions of the accelerator  
+1. Review other functions of the accelerator  
 
 - **krnl\_idct** : This is the top-level for the custom hardware accelerator. Interface properties for the accelerator are specified in this function
 - **krnl\_idct\_dataflow** : This function is called by the **krnl\_idct** function and encapsulates the main functions of the accelerator
@@ -185,8 +185,7 @@ This report provides data related to how the application runs. Notice that the r
     <p align = "center">
     <i>The Profile Summary report</i>
     </p>  
-
-Click on each of tabs and review the report:  
+1. Click on each of tabs and review the report:  
 
 - **Top Operations** : Shows all the major top operations of memory transfer between the host and kernel to global memory, and kernel execution. This allows you to identify throughput bottlenecks when transferring data. Efficient transfer of data to the kernel/host allows for faster execution times
 - **Kernels &amp; Compute Units** : Shows the number of times the kernel was executed. Includes the total, minimum, average, and maximum run times. If the design has multiple compute units, it will show each compute unit&#39;s utilization. When accelerating an algorithm, the faster the kernel executes, the higher the throughput which can be achieved. It is best to optimize the kernel to be as fast as it can be with the data it requires
