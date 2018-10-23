@@ -284,12 +284,9 @@ Compare the **Kernel Total Time (ms)** with the results from the un-optimized ru
 ### Analyze the host code
 1. Open the **src > idct.cpp** file
 1. Using the **Outline** viewer, navigate to the **runFPGA** function  
-
 For each block of 8x8 values, the **runFPGA** function writes data to the FPGA, runs the kernel, and reads results back. Communication with the FPGA is handled by the OpenCL API calls made within the cu.write, cu.run and cu.read functions  
-  
     - **clEnqueueMigrateMemObjects** schedules the transfer of data to or from the FPGA
     - **clEnqueueTask** schedules the executing of the kernel  
-
 These OpenCL functions use events to signal their completion and synchronize execution  
 1. Open the **Application Timeline** of the _Emulation-HW_ run  
 The green segments at the bottom indicate when the IDCT kernel is running
