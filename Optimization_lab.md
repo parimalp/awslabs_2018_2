@@ -107,23 +107,17 @@ The idct function is the core algorithm implemented in the custom hardware accel
 - **krnl\_idct\_dataflow** : This function is called by the **krnl\_idct** function and encapsulates the main functions of the accelerator
 - **read\_blocks** : This function reads from global memory values sent by the host application and streams them to the **execute** function
 - **execute** : This function receives the streaming data and, for each 8x8 block received, calls the **idct** function to perform the actual computation and streams the results back out
-- **write\_blocks** : This function receives the streaming results from the **execute** function and writes them back to global memory for the host application
-
-Open the **idct.cpp** file.  Again use the _Outline_ viewer to quickly look up and inspect the important functions of the host application:
-
+- **write\_blocks** : This function receives the streaming results from the **execute** function and writes them back to global memory for the host application  
+5. Open the **idct.cpp** file.  Again use the _Outline_ viewer to quickly look up and inspect the important functions of the host application:  
 - **main** : Initializes the test vectors, sets-up OpenCL resources, runs the reference model, runs the hardware accelerator, releases the OpenCL resources, and compares the results of the reference IDCT model with the accelerator implementation
 - **runFPGA** : This function takes in a vector of inputs and, for each 8x8 block, calls the hardware accelerated IDCT using the **write** , **run** , **read** , and **finish** helper functions. These function use OpenCL API calls to communicate with the FPGA
 - **runCPU** : This function takes in a vector of inputs and, for each 8x8 block, calls **idctSoft** , a reference implementation of the IDCT
 - **idctSoft** : This function is the reference software implementation of the IDCT algorithm, used in this example to check the results coming back from the FPGA
 - **oclDct** : This class is used to encapsulate the OpenCL runtime calls to interact with the kernel in the FPGA
-- **aligned\_allocator** , **smalloc** , **load\_file\_to\_memory** , **getBinaryName** : These are small helper functions used during test vector generation and OpenCL setup   
-
-Go to line near line no. 580 of the **idct.cpp** file by pressing Ctrl+l (small L) and entering 580
-
-This section of code is where the OpenCL environment is setup in the host application. It is typical of most SDAccel application and will look very familiar to developers with prior OpenCL experience. This body of code can often be reused as-is from project to project.
-
-To setup the OpenCL environment, the following API calls are made:
-
+- **aligned\_allocator** , **smalloc** , **load\_file\_to\_memory** , **getBinaryName** : These are small helper functions used during test vector generation and OpenCL setup  
+6. Go to line near line no. 580 of the **idct.cpp** file by pressing Ctrl+l (small L) and entering 580  
+This section of code is where the OpenCL environment is setup in the host application. It is typical of most SDAccel application and will look very familiar to developers with prior OpenCL experience. This body of code can often be reused as-is from project to project.  
+To setup the OpenCL environment, the following API calls are made:  
 - **clGetPlatformIDs** : This function queries the system to identify the any available OpenCL platforms. It is called twice as it first extracts the number of platforms before extracting the actual supported platforms
 - **clGetPlatformInfo** : Get specific information about the OpenCL platform, such as vendor name and platform name
 - **clGetDeviceIDs** : Obtain list of devices available on a platform
@@ -131,8 +125,7 @@ To setup the OpenCL environment, the following API calls are made:
 - **clGetDeviceInfo** : Get information about an OpenCL device like the device name
 - **clCreateProgramWithBinary** : Creates a program object for a context, and loads specified binary data into the program object. The actual program is obtained before this call through the load\_file\_to memory function
 - **clCreateKernel** : Creates a kernel object
-- **clCreateCommandQueue** : Create a command-queue on a specific device
-
+- **clCreateCommandQueue** : Create a command-queue on a specific device  
 Note: all objects accessed through a **clCreate..**. function call should be released before terminating the program by calling **clRelease...**. This avoids memory leakage and clears the locks on the device
 
 ### Set the XOCC Kernel Linker flags
