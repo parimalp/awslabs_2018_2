@@ -25,21 +25,21 @@ Each registered participant has been allocated a pre-configured EC2 F1 instance 
 
 1. Start a web browser session
 1. Either click on the provided link to open up an AWS login page OR enter [https://console.aws.amazon.com/ec2](https://console.aws.amazon.com/ec2) to open a login page  
-If you had used the link then you should see a login page similar to shown here:
+    If you had used the link then you should see a login page similar to shown here:
     <p align="center">
     <img src ="./images/connecting_lab/FigConnectingLab-1.png"/>
     </p>
     <p align = "center">
     <i>Login page accessed through the provided link</i>
     </p>  
-If you had not used the link you may be directed to the AWS standard login page
+    If you had not used the link you may be directed to the AWS standard login page
     <p align="center">
     <img src ="./images/connecting_lab/FigConnectingLab-2.png"/>
     </p>
     <p align = "center">
     <i>Entering credentials manually</i>
     </p>  
-1. Enter *xilinx-aws-f1-developer-labs* in the Email address field and click **Next** to see the login page similar to shown in _figure titled: Login page accessed through the provided link_
+    Enter xilinx-aws-f1-developer-labs in the Email address field and click Next to see the login page similar to shown in figure titled: Login page accessed through the provided link
 1. Enter _userxx_ in the **IAM user name** field and enter the provided password in the **Password** field
 1. Click **Sign In**
 1. In the top right corner, using the drop-down button, select a region with F1 instances, such as **N. Virginia (US East)** or instructor indicated region
