@@ -103,29 +103,29 @@ The idct function is the core algorithm implemented in the custom hardware accel
 
 1. Review other functions of the accelerator  
 
-- **krnl\_idct** : This is the top-level for the custom hardware accelerator. Interface properties for the accelerator are specified in this function
-- **krnl\_idct\_dataflow** : This function is called by the **krnl\_idct** function and encapsulates the main functions of the accelerator
-- **read\_blocks** : This function reads from global memory values sent by the host application and streams them to the **execute** function
-- **execute** : This function receives the streaming data and, for each 8x8 block received, calls the **idct** function to perform the actual computation and streams the results back out
-- **write\_blocks** : This function receives the streaming results from the **execute** function and writes them back to global memory for the host application  
+    - **krnl\_idct** : This is the top-level for the custom hardware accelerator. Interface properties for the accelerator are specified in this function
+    - **krnl\_idct\_dataflow** : This function is called by the **krnl\_idct** function and encapsulates the main functions of the accelerator
+    - **read\_blocks** : This function reads from global memory values sent by the host application and streams them to the **execute** function
+    - **execute** : This function receives the streaming data and, for each 8x8 block received, calls the **idct** function to perform the actual computation and streams the results back out
+    - **write\_blocks** : This function receives the streaming results from the **execute** function and writes them back to global memory for the host application  
 5. Open the **idct.cpp** file.  Again use the _Outline_ viewer to quickly look up and inspect the important functions of the host application:  
-- **main** : Initializes the test vectors, sets-up OpenCL resources, runs the reference model, runs the hardware accelerator, releases the OpenCL resources, and compares the results of the reference IDCT model with the accelerator implementation
-- **runFPGA** : This function takes in a vector of inputs and, for each 8x8 block, calls the hardware accelerated IDCT using the **write** , **run** , **read** , and **finish** helper functions. These function use OpenCL API calls to communicate with the FPGA
-- **runCPU** : This function takes in a vector of inputs and, for each 8x8 block, calls **idctSoft** , a reference implementation of the IDCT
-- **idctSoft** : This function is the reference software implementation of the IDCT algorithm, used in this example to check the results coming back from the FPGA
-- **oclDct** : This class is used to encapsulate the OpenCL runtime calls to interact with the kernel in the FPGA
-- **aligned\_allocator** , **smalloc** , **load\_file\_to\_memory** , **getBinaryName** : These are small helper functions used during test vector generation and OpenCL setup  
+    - **main** : Initializes the test vectors, sets-up OpenCL resources, runs the reference model, runs the hardware accelerator, releases the OpenCL resources, and compares the results of the reference IDCT model with the accelerator implementation
+    - **runFPGA** : This function takes in a vector of inputs and, for each 8x8 block, calls the hardware accelerated IDCT using the **write** , **run** , **read** , and **finish** helper functions. These function use OpenCL API calls to communicate with the FPGA
+    - **runCPU** : This function takes in a vector of inputs and, for each 8x8 block, calls **idctSoft** , a reference implementation of the IDCT
+    - **idctSoft** : This function is the reference software implementation of the IDCT algorithm, used in this example to check the results coming back from the FPGA
+    - **oclDct** : This class is used to encapsulate the OpenCL runtime calls to interact with the kernel in the FPGA
+    - **aligned\_allocator** , **smalloc** , **load\_file\_to\_memory** , **getBinaryName** : These are small helper functions used during test vector generation and OpenCL setup  
 6. Go to line near line no. 580 of the **idct.cpp** file by pressing Ctrl+l (small L) and entering 580  
 This section of code is where the OpenCL environment is setup in the host application. It is typical of most SDAccel application and will look very familiar to developers with prior OpenCL experience. This body of code can often be reused as-is from project to project.  
-To setup the OpenCL environment, the following API calls are made:  
-- **clGetPlatformIDs** : This function queries the system to identify the any available OpenCL platforms. It is called twice as it first extracts the number of platforms before extracting the actual supported platforms
-- **clGetPlatformInfo** : Get specific information about the OpenCL platform, such as vendor name and platform name
-- **clGetDeviceIDs** : Obtain list of devices available on a platform
-- **clCreateContext** : Creates an OpenCL context, which manages the runtime objects
-- **clGetDeviceInfo** : Get information about an OpenCL device like the device name
-- **clCreateProgramWithBinary** : Creates a program object for a context, and loads specified binary data into the program object. The actual program is obtained before this call through the load\_file\_to memory function
-- **clCreateKernel** : Creates a kernel object
-- **clCreateCommandQueue** : Create a command-queue on a specific device  
+To setup the OpenCL environment, the following API calls are made:    
+    - **clGetPlatformIDs** : This function queries the system to identify the any available OpenCL platforms. It is called twice as it first extracts the number of platforms before extracting the actual supported platforms
+    - **clGetPlatformInfo** : Get specific information about the OpenCL platform, such as vendor name and platform name
+    - **clGetDeviceIDs** : Obtain list of devices available on a platform
+    - **clCreateContext** : Creates an OpenCL context, which manages the runtime objects
+    - **clGetDeviceInfo** : Get information about an OpenCL device like the device name
+    - **clCreateProgramWithBinary** : Creates a program object for a context, and loads specified binary data into the program object. The actual program is obtained before this call through the load\_file\_to memory function
+    - **clCreateKernel** : Creates a kernel object
+    - **clCreateCommandQueue** : Create a command-queue on a specific device  
 Note: all objects accessed through a **clCreate..**. function call should be released before terminating the program by calling **clRelease...**. This avoids memory leakage and clears the locks on the device
 
 ### Set the XOCC Kernel Linker flags
@@ -179,11 +179,10 @@ This report provides data related to how the application runs. Notice that the r
     <i>The Profile Summary report</i>
     </p>  
 1. Click on each of tabs and review the report:  
-
-- **Top Operations** : Shows all the major top operations of memory transfer between the host and kernel to global memory, and kernel execution. This allows you to identify throughput bottlenecks when transferring data. Efficient transfer of data to the kernel/host allows for faster execution times
-- **Kernels &amp; Compute Units** : Shows the number of times the kernel was executed. Includes the total, minimum, average, and maximum run times. If the design has multiple compute units, it will show each compute unit&#39;s utilization. When accelerating an algorithm, the faster the kernel executes, the higher the throughput which can be achieved. It is best to optimize the kernel to be as fast as it can be with the data it requires
-- **Data Transfers** : This tab has no bearing in software emulation as no actual data transfers are emulated across the host to the platform. In hardware emulation, this shows the throughput and bandwidth of the read/writes to the global memory that the host and kernel share
-- **OpenCL APIs** : Shows all the OpenCL API command executions, how many time each was executed, and how long they take to execute
+    - **Top Operations** : Shows all the major top operations of memory transfer between the host and kernel to global memory, and kernel execution. This allows you to identify throughput bottlenecks when transferring data. Efficient transfer of data to the kernel/host allows for faster execution times
+    - **Kernels &amp; Compute Units** : Shows the number of times the kernel was executed. Includes the total, minimum, average, and maximum run times. If the design has multiple compute units, it will show each compute unit&#39;s utilization. When accelerating an algorithm, the faster the kernel executes, the higher the throughput which can be achieved. It is best to optimize the kernel to be as fast as it can be with the data it requires
+    - **Data Transfers** : This tab has no bearing in software emulation as no actual data transfers are emulated across the host to the platform. In hardware emulation, this shows the throughput and bandwidth of the read/writes to the global memory that the host and kernel share
+    - **OpenCL APIs** : Shows all the OpenCL API command executions, how many time each was executed, and how long they take to execute
 1. Double-click the **Application Timeline** report and review it
     <p align="center">
     <img src ="./images/optimization_lab/FigOptimizationLab-13.png"/>
@@ -191,7 +190,6 @@ This report provides data related to how the application runs. Notice that the r
     <p align = "center">
     <i>The Application Timeline</i>
     </p>  
-
 The **Application Timeline** collects and displays host and device events on a common timeline to help you understand and visualize the overall health and performance of your systems. These events include OpenCL API calls from the host code: when they happen and how long each of them takes.
 
 ### Perform HW Emulation      
@@ -238,22 +236,21 @@ This number will serve as a baseline (reference point) to compare against after 
     <i>HLS report before optimization</i>
     </p>  
 1. In the **Performance Estimates** section, expand the **Latency (clock cycles)** &gt; **Summary** and note the following numbers:  
-- Latency (min/max): 6185
-- Interval (min/max): 6185  
+    - Latency (min/max): 6185
+    - Interval (min/max): 6185  
 The numbers will serve as a baseline for comparison against optimized versions of the kernel
 1. In the HLS report, expand **Latency (clock cycles)** &gt; **Detail** &gt; **Instance**  
-- Note that the 3 sub-functions read, execute and write have roughly the same latency and that their sum total is equivalent to the total Interval reported in the Summary table
-- This indicates that the three sub-functions are executing sequentially, hinting to an optimization opportunity
+    - Note that the 3 sub-functions read, execute and write have roughly the same latency and that their sum total is equivalent to the total Interval reported in the Summary table
+    - This indicates that the three sub-functions are executing sequentially, hinting to an optimization opportunity
 1. Close all the reports
 
 ### Analyze the kernel code and apply the DATAFLOW directive
 1. Open the **src > krnl\_idct.cpp** file
 1. Using the **Outline** viewer, navigate to the **krnl\_idct\_dataflow** function  
 Observe that the three functions are communicating using **hls::streams** objects. These objects model a FIFO-based communication scheme. This is the recommended coding style which should be used whenever possible to exhibit streaming behavior and allow **DATAFLOW** optimization
-1. Enable the DATAFLOW optimization by uncommenting the **#pragma HLS DATAFLOW** present in the krnl\_idct\_dataflow function (line 322)  
-- The DATAFLOW optimization allows each of the subsequent functions to execute as independent processes
-- This results in overlapping and pipelined execution of the read, execute and write functions instead of sequential execution
-- The FIFO channels between the different processes do not need to buffer the complete dataset anymore but can directly stream the data to the next block
+1. Enable the DATAFLOW optimization by uncommenting the **#pragma HLS DATAFLOW** present in the krnl\_idct\_dataflow function (line 322)     - The DATAFLOW optimization allows each of the subsequent functions to execute as independent processes
+    - This results in overlapping and pipelined execution of the read, execute and write functions instead of sequential execution
+    - The FIFO channels between the different processes do not need to buffer the complete dataset anymore but can directly stream the data to the next block
 1. Comment the three **#pragma HLS stream** statements on lines 327, 328 and 329
 1. Save the file
 ### Build the project in Hardware emulation configuration and analyze the HLS report
@@ -268,8 +265,8 @@ Observe that the three functions are communicating using **hls::streams** object
     <i>HLS report after applying pragma DATAFLOW</i>
     </p>  
 1. In the **Performance Estimates** section, expand the **Latency (clock cycles)** &gt; **Summary** and note the following numbers:
-- Latency (min/max): 2085
-- Interval (min/max): 2069
+    - Latency (min/max): 2085
+    - Interval (min/max): 2069
 ###  Run the Hardware Emulation
 1. Run the application by clicking the Run button (![alt tag](./images/Fig-run.png))  
 Wait for the run to finish with RUN COMPLETE message
@@ -290,8 +287,8 @@ Compare the **Kernel Total Time (ms)** with the results from the un-optimized ru
 
 For each block of 8x8 values, the **runFPGA** function writes data to the FPGA, runs the kernel, and reads results back. Communication with the FPGA is handled by the OpenCL API calls made within the cu.write, cu.run and cu.read functions  
   
-- **clEnqueueMigrateMemObjects** schedules the transfer of data to or from the FPGA
-- **clEnqueueTask** schedules the executing of the kernel  
+    - **clEnqueueMigrateMemObjects** schedules the transfer of data to or from the FPGA
+    - **clEnqueueTask** schedules the executing of the kernel  
 
 These OpenCL functions use events to signal their completion and synchronize execution  
 1. Open the **Application Timeline** of the _Emulation-HW_ run  
@@ -304,27 +301,21 @@ The green segments at the bottom indicate when the IDCT kernel is running
     </p>  
 1. Notice that there are gaps between each of the green segments indicating that the operations are not overlapping
 1. Zoom in by performing a left mouse drag across one of these gaps to get a more detailed view  
-
-- The two green segments correspond to two consecutive invocations of the IDCT kernel
-- The gap between the two segments is indicative of the kernel idle time between these two invocations
-- The **Data Transfer** section of the timeline shows that **Read** and **Write** operations are happening when the kernel is idle
-- The Read operation is to retrieve the results from the execution which just finished and the Write operation is to send inputs for the next execution
-- This represents a sequential execution flow of each iteration
-
+    - The two green segments correspond to two consecutive invocations of the IDCT kernel
+    - The gap between the two segments is indicative of the kernel idle time between these two invocations
+    - The **Data Transfer** section of the timeline shows that **Read** and **Write** operations are happening when the kernel is idle
+    - The Read operation is to retrieve the results from the execution which just finished and the Write operation is to send inputs for the next execution
+    - This represents a sequential execution flow of each iteration
 1. Close the **Application Timeline**  
 1. In the **idct.cpp** file, go to the **oclDct::write** function  
-
-- Observe that on line 353, the function synchronizes on the **outEvVec** event through a call to **clWaitForEvents**
-- This event is generated by the completion of the **clEnqueueMigrateMemObjects** call in the **oclDct::read** function (line 429)
-- Effectively the next execution of the **oclDct::write** function is gated by the completion of the previous **oclDct::read** function, resulting in the sequential behavior observed in the **Application Timeline**
-
+    - Observe that on line 353, the function synchronizes on the **outEvVec** event through a call to **clWaitForEvents**
+    - This event is generated by the completion of the **clEnqueueMigrateMemObjects** call in the **oclDct::read** function (line 429)
+    - Effectively the next execution of the **oclDct::write** function is gated by the completion of the previous **oclDct::read** function, resulting in the sequential behavior observed in the **Application Timeline**
 1. Use the **Outline** viewer to locate the definition of the **NUM\_SCHED** macro in the **idct.cpp** file
-
-- This macro defines the depth of the event queue
-- The value of 1 explains the observed behavior: new tasks (write, run, read) are only enqueued when the previous has completed effectively synchronizing each loop iteration
-- By increasing the value of the **NUM\_SCHED** macro, we increase the depth of the event queue and enable more blocks to be enqueued for processing, which may result in the write, run and read tasks to overlap and allow the kernel to execute continuously or at least more frequently
-- This technique is called software pipelining
-
+    - This macro defines the depth of the event queue
+    - The value of 1 explains the observed behavior: new tasks (write, run, read) are only enqueued when the previous has completed effectively synchronizing each loop iteration
+    - By increasing the value of the **NUM\_SCHED** macro, we increase the depth of the event queue and enable more blocks to be enqueued for processing, which may result in the write, run and read tasks to overlap and allow the kernel to execute continuously or at least more frequently
+    - This technique is called software pipelining
 1. Modify line 213 to increase the value of **NUM\_SCHED** to 6 as follows
 
 **#define NUM\_SCHED 6**
@@ -332,10 +323,8 @@ The green segments at the bottom indicate when the IDCT kernel is running
 1. Save the file
 ### Run the Hardware Emulation.
 1. Run the application by clicking the Run button (![alt tag](./images/Fig-run.png))  
-
-- Since only the idct.cpp file was changed, the incremental makefile rebuilds only the host code before running emulation
-- This results in a much faster iteration loop since it is usually the compilation of the kernel to hardware which takes the most time
-
+    - Since only the idct.cpp file was changed, the incremental makefile rebuilds only the host code before running emulation
+    - This results in a much faster iteration loop since it is usually the compilation of the kernel to hardware which takes the most time
 1. In the **Assistant** tab, expand **optimization\_lab\_example** &gt; **Emulation-HW** &gt; **optimization\_lab\_example-Default**
 1.* Double-click the **Application Timeline** report  
 
@@ -369,7 +358,6 @@ Note: system tasks might slow down communication between the application and the
     <p align = "center">
     <i>Execution output</i>
     </p>  
-
 1. Enter **exit** in the terminal window to exit out of the _sudo shell_
 1. Close the SDx by selecting **File &gt; Exit**
 
