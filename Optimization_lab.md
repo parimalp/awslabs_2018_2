@@ -313,10 +313,8 @@ The green segments at the bottom indicate when the IDCT kernel is running
     - The value of 1 explains the observed behavior: new tasks (write, run, read) are only enqueued when the previous has completed effectively synchronizing each loop iteration
     - By increasing the value of the **NUM\_SCHED** macro, we increase the depth of the event queue and enable more blocks to be enqueued for processing, which may result in the write, run and read tasks to overlap and allow the kernel to execute continuously or at least more frequently
     - This technique is called software pipelining
-1. Modify line 213 to increase the value of **NUM\_SCHED** to 6 as follows
-
+1. Modify line 213 to increase the value of **NUM\_SCHED** to 6 as follows  
 **#define NUM\_SCHED 6**
-
 1. Save the file
 ### Run the Hardware Emulation.
 1. Run the application by clicking the Run button (![alt tag](./images/Fig-run.png))  
