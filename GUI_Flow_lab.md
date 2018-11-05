@@ -16,7 +16,7 @@ After completing this lab, you will be able to:
 
 ## Steps
 ### Create an SDAccel Project        
-1. Execute the following commands in a terminal window to source the required Xilinx tools:
+1. Execute the following commands, if it is not already done, in a terminal window to source the required Xilinx tools:
    ```
       cd ~/aws-fpga		  
       source sdaccel_setup.sh		  
@@ -76,7 +76,7 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
     </p>
 
 ### Perform SW Emulation
-1. Click on the _Add Hardware Function_ button icon (![alt tag](./images/Fig-hw_button.png)) in the **Hardware Functions** tab to see functions defined in the design. SInc ether there is only one function and it is already included, you won't see any listing  
+1. Click on the _Add Hardware Function_ button icon (![alt tag](./images/Fig-hw_button.png)) in the **Hardware Functions** tab to see functions defined in the design. Since there is only one function and it is already included, you won't see any listing  
 1. Notice the _kml\_vadd_ function is the only function in the design and is already marked to be accelerated
 1. Make sure the **project.sdx** under _gui\_flow\_example_ in the **Project Explorer** tab is selected
 1. Either select **Project &gt; Build Configurations &gt; Set Active &gt; Emulation-SW** or click on the drop-down button of _Active build configuration_ and select **Emulation-SW**
@@ -84,11 +84,11 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
     <img src ="./images/guiflow_lab/FigGUIflowLab-6.png"/>
     </p>
     <p align = "center">
-    <i>Selecting SW emulation build configuration</i>
+    <i>Selecting SW Emulation build configuration</i>
     </p>
 1. Either select **Project &gt; Build Project** or click on the build (![alt tag](./images/Fig-build.png)) button  
     This will build the project including gui\_flow\_example.exe file under the Emulation-SW directory
-1. Run the application by clicking the Run button (![alt tag](./images/Fig-run.png))
+1. Run the application by clicking the Run button (![alt tag](./images/Fig-run.png)). 
     The application will be run and the output will be displayed in the Console tab
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-7.png"/>
@@ -98,7 +98,7 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
     </p>
 
 ### Perform HW Emulation
-**The SW Emulation flow checks functional correctness of the software application, but it does not guarantee the correctness of the design on the FPGA target. The Hardware Emulation flow can be used to verify the functionality of the generated logic. This flow invokes the hardware simulator in the SDAccel environment. As a consequence, the Hardware Emulation flow will take longer to run than the SW Emulation flow.**
+**The SW Emulation flow checks functional correctness of the software application, but it does not guarantee the correctness of the design on the FPGA target. The Hardware (HW) Emulation flow can be used to verify the functionality of the generated logic. This flow invokes the hardware simulator in the SDAccel environment. As a consequence, the HW Emulation flow will take longer to run than the SW Emulation flow.**
 
 **The HW Emulation flow is not cycle accurate, but provides more detailed profiling information than software emulation and can be used to do some analysis and optimization of the performance of the application.**
 
@@ -107,7 +107,7 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
     <img src ="./images/guiflow_lab/FigGUIflowLab-8.png"/>
     </p>
     <p align = "center">
-    <i>Selecting HW emulation build configuration</i>
+    <i>Selecting HW Emulation build configuration</i>
     </p>
 1. Either select **Project &gt; Build Project** or click on the (![alt tag](./images/Fig-build.png)) button  
     This will build the project including gui\_flow\_example.exe file under the Emulation-HW directory
@@ -126,10 +126,10 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
     <img src ="./images/guiflow_lab/FigGUIflowLab-10.png"/>
     </p>
     <p align = "center">
-    <i>Hardware emulation run output</i>
+    <i>Hardware Emulation run output</i>
     </p>
 
-### Understand the HLS Report, profile summary, and Application Timeline
+### Review the HLS Report
 1. Double-click on the **HLS Report** entry under **Emulation-HW &gt; binary\_container\_1 &gt; krnl\_vadd** in the **Assistant** tab to open the report
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-11.png"/>
@@ -237,7 +237,7 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
 
 ## Conclusion 
 
-In this lab, you used SDAccel IDE to create a project using one of the application templates. You then ran the design using the software emulation and hardware emulation flows, and reviewed the reports. You also read through the steps to generate the AFI. Since the system build and AFI creation takes over two hours, you used the provided solution to download the application and kernel on the F1 instance and validated the functionality.
+In this lab, you used SDAccel IDE to create a project using one of the application templates. You then ran the design using the software  and hardware emulation flows, and reviewed the reports. You also read through the steps to generate the AFI. Since the system build and AFI creation takes over two hours, you used the provided solution to download the application and kernel on the F1 instance and validated the functionality.
 
 ---------------------------------------
 
