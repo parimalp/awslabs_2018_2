@@ -2,13 +2,13 @@
 
 ## Introduction
 
-This lab guides you through the steps involved in using a Makefile flow to build and perform CPU and hardware emulations to verify the functionality. You will then use an AWS F1 instance to validate the design.
+This lab guides you through the steps involved in using a Makefile flow to build and perform software and hardware emulations to verify the functionality. You will then use an AWS F1 instance to validate the design.
 
 ## Objectives
 
 After completing this lab, you will be able to:
 
-- Run CPU Emulation to verify the functionality of a design using a Makefile flow
+- Run SW Emulation to verify the functionality of a design using a Makefile flow
 - Run HW Emulation to verify the functionality including kernel hardware using a Makefile flow
 - Build the full system and verify functionality in hardware on an AWS F1 instance
 
@@ -37,7 +37,7 @@ The SDAccel emulation flows allow testing, profiling and debugging of the applic
 Software emulation allow functionality of the software application to be verified.  
 Hardware emulation allow the verification of the functionality of the generated logic generated for the FPGA and the application working together.
 
-1. Execute the following commands in the terminal to build and run the *SW (CPU) emulation* flow for the SDAccel &#39;hello world&#39; example:
+1. Execute the following commands in the terminal to build and run the *SW emulation* flow for the SDAccel &#39;hello world&#39; example:
     ```
       cd helloworld_ocl
       make clean
@@ -76,7 +76,7 @@ Hardware emulation allow the verification of the functionality of the generated 
     <p align = "center">
     <i>HLS being used to compile the kernel</i>
     </p>
-    The host application will then be compiled, the xclbin and the helloworld.exe files will be generated. The application will be executed on the CPU in the hardware emulation mode showing the output and transfer rate like:
+    The host application will then be compiled, the xclbin and the helloworld.exe files will be generated. The application will be executed on the host CPU in the hardware emulation mode showing the output and transfer rate like:
     <p align="center">
     <img src ="./images/makefile_lab/FigMakefileLab-5.png"/>
     </p>
@@ -104,7 +104,7 @@ Hardware emulation allow the verification of the functionality of the generated 
 1. Enter **exit** in the teminal window to exit out of _sudo shell_  
 ## Conclusion
 
-In this lab, you used a Makefile flow to perform CPU and HW emulations. You then ran the application on F1 and validated the functionality.
+In this lab, you used a Makefile flow to perform SW and HW emulations. You then ran the application on F1 and validated the functionality.
 
 ---------------------------------------
 
@@ -123,6 +123,6 @@ Start the next lab: <a href="GUI_Flow_lab.md">3. GUI Flow lab</a>
       make clean
       make check TARGETS=hw DEVICES=$AWS_PLATFORM all
    ```  
-This will build the project under the **helloworld\_ocl** directory. The built project will include executable helloword file along with vector_addition.hw.xilinx_aws-vu9p-f1-04261818_dynamic_5_0.xclbin file under the sub-folder **xclbin**  
+This will build the project under the **helloworld\_ocl** directory. The built project will include executable helloworld file along with vector_addition.hw.xilinx_aws-vu9p-f1-04261818_dynamic_5_0.xclbin file under the sub-folder **xclbin**  
 This step takes about two hours.  
 **Once the full system is built, you can create an AFI by following the steps listed <a href="Creating_AFI.md">here</a>**
