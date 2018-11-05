@@ -16,7 +16,7 @@ After completing this lab, you will be able to:
 
 ## Steps 
 ### Create an SDAccel Project
-1. Execute the following commands in a terminal window to source the required Xilinx tools:
+1. Execute the following commands, if it is not already done, in a terminal window to source the required Xilinx tools:
    ```
       cd ~/aws-fpga		  
       source sdaccel_setup.sh		  
