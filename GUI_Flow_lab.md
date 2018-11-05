@@ -112,7 +112,7 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
 1. Either select **Project &gt; Build Project** or click on the (![alt tag](./images/Fig-build.png)) button  
     This will build the project including gui\_flow\_example.exe file under the Emulation-HW directory
 1. Select **Run &gt; Run Configurations…** to open the configurations window
-1. Click on the **Environemnt** tab and change the LD_LIBRART_PATH to **/opt/xilinx/xrt/lib**, leaving the other two variables to the default settings. This is required to see activities on the Kernel side using Xilinx Run Time library (xrt)
+1. Click on the **Environemnt** tab and change the LD_LIBRARY_PATH to **/opt/xilinx/xrt/lib**, leaving the other two variables to the default settings. This is required to see activities on the Kernel side using Xilinx Run Time library (xrt)
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-9-1.png"/>
     </p>
