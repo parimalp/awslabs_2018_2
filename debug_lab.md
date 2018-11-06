@@ -24,17 +24,16 @@ After completing this lab, you will be able to:
    ```
       cd rtl_kernel
    ```
-Since we will be executing application in System configuration mode, we need to start the SDx program as being **su**
-1. Execute the following commands to launch **sdx**
+1. Since we will be executing application in System configuration mode, we need to start the SDx program as being **su**. Execute the following commands to launch **sdx**
    ```
       sudo sh
       source /opt/xilinx/xrt/setup.sh
       /opt/Xilinx/SDx/2018.2.op2258646/bin/sdx
-   ```
-An Eclipse launcher window will appear asking you to select a directory as workspace
-1. Click on the **Browse…** button, browse to **/home/centos/aws-fpga/rtl\_kernel**, click **OK** twice
+   ```  
+1. An Eclipse launcher window will appear asking you to select a directory as workspace. Click on the **Browse…** button, browse to **/home/centos/aws-fpga/rtl\_kernel**, click **OK** twice
 
-### Add ChipScope Debug core      
+### Hardware Debugging
+#### Add ChipScope Debug core      
 1. In the **Assistant** tab, expand **System > binary_container_1 > KVadd**
 1. Select **KVAdd**, right-click and select **Settings...**
 1. In the **Hardware Function Settings** window, click on the _ChipScope Debug_ option for the _KVAdd_ kernel
@@ -69,12 +68,11 @@ The host application will start executing, loading bitstream, and pausing for th
     <i>Paused execution</i>
     </p>
 ### Start Vivado Hardware Manager
-1. In another terminal window, start virtual jtag connection using following two commands:
+1. In another terminal window, start virtual jtag connection using following two commands. The Virtual JTAG XVC Server will start listining to TCP port 10201
    ```
       source $XILINX_SDX/settings64.sh
       sudo fpga-start-virtual-jtag -P 10201 -S 0
    ```
-The Virtual JTAG XVC Server will start listining to TCP port 10201
     <p align="center">
     <img src ="./images/debug_lab/FigDebugLab-4.png"/>
     </p>
