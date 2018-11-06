@@ -199,10 +199,18 @@ The **Application Timeline** collects and displays host and device events on a c
 1. Either select **Project &gt; Build Project** or click on the (![alt tag](./images/Fig-build.png)) button  
 This will build the project including Optimization\_lab\_example.exe file under the Emulation-HW directory
 1. Select **Run &gt; Run Configurations…** to open the configurations window
+1. In the **Main** tab, click on the _Use waveform for kernel debugging_ and then _Launch live waveform_ options
+    <p align="center">
+    <img src ="./images/optimization_lab/FigOptimizationLab-14.png"/>
+    </p>
+    <p align = "center">
+    <i>Setting up for live waveform</i>
+    </p>  
 1. Click on the **Arguments** tab and notice that the _binary\_container\_1.xclbin_ is already assigned  
 If no argument was assigned then you would have to explicitly assign the **xclbin** by clicking on the _Automatically add binary container(s) to arguments_, and click **Apply**
-1. Click **Run** to run the application
-1. The Console tab shows that the test was completed successfully along with the data transfer rate
+1. Click **Run** to run the application  
+1. The Console tab shows that the test was completed successfully along with the data transfer rate  
+Notice that Vivado was started and the 
     <p align="center">
     <img src ="./images/optimization_lab/FigOptimizationLab-15.png"/>
     </p>
