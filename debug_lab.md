@@ -29,7 +29,7 @@ Since we will be executing application in System configuration mode, we need to 
    ```
       sudo sh
       source /opt/xilinx/xrt/setup.sh
-      /opt/Xilinx/SDx/2018.2../bin/sdx
+      /opt/Xilinx/SDx/2018.2.op2258646/bin/sdx
    ```
 An Eclipse launcher window will appear asking you to select a directory as workspace
 1. Click on the **Browse…** button, browse to **/home/centos/aws-fpga/rtl\_kernel**, click **OK** twice
@@ -81,11 +81,93 @@ The Virtual JTAG XVC Server will start listining to TCP port 10201
     <p align = "center">
     <i>Paused execution</i>
     </p>
-1. Start Vivado from another terminal window
-Click on Open Hardware Manager link
-Click Open Target > Open New Target
-Click Next
-Click Next keeping default Local Server option
-Enter localhost in the Host name and 10201 in the Port fields:
+1. Start Vivado from another terminal window from the debug_lab directory
+1. Click on **Open Hardware Manager** link
+1. Click **Open Target > Open New Target**
+1. Click **Next**
+1. Click **Next** keeping default _Local Server_ option
+1. Click on the **Add Xilinx Virtual Cable (XVC)** button
+1. Enter **localhost** in the _Host name_ and **10201** in the _Port_ fields, and click **OK**
+    <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-5.png"/>
+    </p>
+    <p align = "center">
+    <i>Adding Virtual JTAG cable</i>
+    </p>
+    The Open New Hardware Target form with scanned debug_bridge will appear
+     <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-6.png"/>
+    </p>
+    <p align = "center">
+    <i>Scanned debug bridge</i>
+    </p>  
+1. Click **Next** and then **Finish**  
+The Vivado Hardware Manager will open showing _Hardware_, _Waveform_, _Settings-hw_, _Trigger-Setup_ windows. The _Hardware_ window also shows two ILA cores inserted in the design
+     <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-7.png"/>
+    </p>
+    <p align = "center">
+    <i>Hardware Manager</i>
+    </p>  
+1. Click on browse button of the **Probes file**, browse to **rtl_kernel_example/System** under the **debug_lab** folder, select **top_sp.ltx** entry and click **OK**  
+Notice fourse (Slot_0 to Slot_3) probes are filled in the Waveform window
+1. Click on the _Run Trigger immediate_ button and observe the waveform window is filled indicating the four channels are in _Inactive_ state
+     <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-8.png"/>
+    </p>
+    <p align = "center">
+    <i>Forced triggered waveform window</i>
+    </p>  
+1. Expand slot_1 : KVAdd_1_m01_axi : W Cahhnel in the Waveform window, select the WVALID signal and drag it to the Trigger Setup - hw window
+     <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-9.png"/>
+    </p>
+    <p align = "center">
+    <i>Adding a probe in the Trigger Setup window</i>
+    </p>  
+1. Click on drop-down button of the Value field and select trigger condition value as 1
+     <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-10.png"/>
+    </p>
+    <p align = "center">
+    <i>Setting trigger condition</i>
+    </p>  
+1. Click on the Run button and observe hw_ila_1 probe is waiting for the trigger condition to occur
+     <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-11.png"/>
+    </p>
+    <p align = "center">
+    <i>Waiting for the trigger condition to occur</i>
+    </p>  
+1. Switch to the SDx window and hit Enter key in the Console window for the program to continue execution  
+Observe that the program finishes execution displaying **INFO: Test completed successfully** message in the Console window
+1. Switch back to Vivado and observed that since the trigger condition is met, the waveform window is displaying activities
+     <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-12.png"/>
+    </p>
+    <p align = "center">
+    <i>Triggered waveform</i>
+    </p>  
+1. Expand **Slot_0, slot_1,** and **slot_2 groups**, zoom inregion of about _450 to 1000_, and observe the data transfer taking place on each channels. Also note the addresses from where data are read and results are written into  
+    <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-13.png"/>
+    </p>
+    <p align = "center">
+    <i>Zoomed view showing various activities</i>
+    </p>  
+1. Zoom in on one of the data beats and hover your mouse at each successive samples and notice the data content changing
+1. Close Vivado by selecting **File > Exit**
+1. Close the jtag probe by switching to its terminal window and pressint _Ctrl-C_
+
+### Perform Software Debugging
+1. Switch to the SDx GUI
+1. Comment out lines 246 and 247
+1. Save the file by typing **Ctrl-S**
+
+
+
+
+
+
 
 
