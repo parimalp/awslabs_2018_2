@@ -26,7 +26,7 @@ After completing this lab, you will be able to:
       cd rtl_kernel
    ```
 1. Launch SDAccel by executing **sdx** in the terminal window  
-An Eclipse launcher widow will appear asking to select a directory as workspace
+An Eclipse launcher window will appear asking to select a directory as workspace
 1. Click on the **Browse…** button, browse to **/home/centos/aws-fpga/rtl\_kernel**, click **OK** twice
     <p align="center">
     <img src ="./images/workspace.png"/>
