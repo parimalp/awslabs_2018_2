@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This lab guides you through the steps involved in using a GUI flow to create an SDAccel project. After creating a project you will run SW and hardware emulations to verify the functionality. You will then use an AWS F1 instance to validate the design.
+This lab guides you through the steps involved in using a GUI flow to create an SDAccel project. After creating a project you will run SW and hardware emulations to verify the functionality. You will then use an AWS F1 instance to validate the design, and perform profile and application timeline analysis.
 
 ## Objectives
 
@@ -12,7 +12,7 @@ After completing this lab, you will be able to:
 - Run SW Emulation to verify the functionality of a design using a GUI flow
 - Run HW Emulation to verify the functionality of a design using a GUI flow
 - Verify functionality in hardware on an AWS F1 instance
-- Build system for hardware execution, and perform profile and application timeline analysis on AWS F1
+- Build system for hardware execution, and perform profile and application timeline analysis on the AWS F1 instance
 
 
 ## Steps
@@ -29,7 +29,7 @@ After completing this lab, you will be able to:
       cd GUI_flow
    ```
 1. Launch SDAccel by executing **sdx** in the terminal window  
-An Eclipse launcher widow will appear asking to select a directory as workspace
+An Eclipse launcher window will appear asking to select a directory as workspace
 1. Click on the **Browse…** button, browse to **/home/centos/aws-fpga/GUI\_flow**, click **OK** twice
     <p align="center">
     <img src ="./images/workspace.png"/>
@@ -225,7 +225,7 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
 **Since hardware bitstream genetaion takes over two hours, you will go through basic steps involved in setting up System build in this section so you can perform profiling and application timeline analysis on AWS using the already pre-generated awsxclbin.**
 
 1. Either select **Project &gt; Build Configurations &gt; Set Active &gt; System** or click on the drop-down button of _Active build configuration_ and select **System**
-1. Click on the drop-down button of Hardware optimization and select -Oquick option which will make comiplation relatively faster
+1. Click on the drop-down button of Hardware optimization and select -Oquick option which will make compilation relatively faster
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-22.png"/>
     </p>
@@ -272,19 +272,28 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
 ### Perform Profiling and Application Timeline Analysis on AWS F1 Using the Generate Files
 **You will use the generated timeline and profile files to perform the analysis**
 
-1. Select **File > New SDx Project**
-1. Go through the wizard to create **gui_flow_test** with **Empty Application** template
 1. Select **File > Open File...**
-1. Browse to **/home/centos/sources/gui_flow_solution** and select **profile.xprf, timeline.wcfg, timeline.wdb** and click **OK**
-The _Waveform and Profile Summary tabs_ will open
-1. Select the profile report will open.
+1. Browse to **/home/centos/sources/gui_flow_solution** and select **profile.xprf** and **timeline.wdb** and click **OK**
+The _Waveform and Profile Summary tabs_ will open. In the Waveform tab, notice that the actual activities starts after 10,000 ms since the FPGA loading takes time
+1. Run the application again from the command line and observe the output  
+It indicates the AFI is already loaded and so it is skipping the loading
+    <p align="center">
+    <img src ="./images/guiflow_lab/FigGUIflowLab-21-1.png"/>
+    </p>
+    <p align = "center">
+    <i>The Execution output of the second time running</i>
+    </p>  
+1. Generate the profile and trace files as done earlier
+1. Close the Waveform and Profile Summary tabs and open the two files again  
+Notice that the activity starts at around 500 ms as no AFI loading took place.
+1. Select the **Profile Summary** tab and observe the Total Data Transfer between Kernels and Global Memory, and Top Kernel Execution Duration  
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-27.png"/>
     </p>
     <p align = "center">
     <i>Top operation information in the profile summary</i>
     </p>
-1. Click on the **Kernels &amp; Compute Units** tab and observe the number of Enqueues (1), and the execution time (0.3961 ms). Also understand the **Compute Uni Utilization** and **Compute Units: Stall Information** section
+1. Click on the **Kernels &amp; Compute Units** tab and observe the number of Enqueues (1), and the execution time (0.308 ms). Also understand the **Compute Uni Utilization** and **Compute Units: Stall Information** section
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-28.png"/>
     </p>
@@ -299,14 +308,14 @@ The _Waveform and Profile Summary tabs_ will open
     <i>Data transfer information in the profile summary</i>
     </p>
 
-1. Double-click on the **Application Timeline** entry in the **Assistant** tab, expand all entries in the timeline graph and see various activities in each fucntional units of the design
+1. Select the **Waveform** tab, expand all entries in the timeline graph and see various activities in each fucntional units of the design
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-30.png"/>
     </p>
     <p align = "center">
     <i>Timeline graph showing various activities in various region of the system</i>
     </p>
-1. Using left-button mouse click, select region around 1.192 ms to 1.194 ms region to zoom in into the view
+1. Using left-button mouse click, select region around 1.127 ms to 1.128 ms region to zoom in into the view
 1. Observe various stall taking palce
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-31.png"/>
