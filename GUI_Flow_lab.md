@@ -12,6 +12,7 @@ After completing this lab, you will be able to:
 - Run SW Emulation to verify the functionality of a design using a GUI flow
 - Run HW Emulation to verify the functionality of a design using a GUI flow
 - Verify functionality in hardware on an AWS F1 instance
+- Build system for hardware execution, and perform profile and application timeline analysis on AWS F1
 
 
 ## Steps
@@ -220,6 +221,27 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
     <i>The system estimate report</i>
     </p>
 
+### Setup for System Build
+**Since hardware bitstream genetaion takes over two hours, you will go through basic steps involved in setting up System build in this section so you can perform profiling and application timeline analysis on AWS using the already pre-generated awsxclbin.**
+
+1. Either select **Project &gt; Build Configurations &gt; Set Active &gt; System** or click on the drop-down button of _Active build configuration_ and select **System**
+1. Click on the drop-down button of Hardware optimization and select -Oquick option which will make comiplation relatively faster
+    <p align="center">
+    <img src ="./images/guiflow_lab/FigGUIflowLab-22.png"/>
+    </p>
+    <p align = "center">
+    <i>Selecting System build configuration and setting compilation option</i>
+    </p>
+1. In the **Assistant** tab, expand **gui_flow_example > System > binary_container_1 > krnl_vadd**, right-click and select **Settings...**
+1. In the **Hardware Function Settings** window, select **Counters + Trace** using _Data Transfer_ drop-down button, click the **Execute Profiling** and **Stall Profiling** options, click **Apply**, and click **OK**
+    <p align="center">
+    <img src ="./images/guiflow_lab/FigGUIflowLab-23.png"/>
+    </p>
+    <p align = "center">
+    <i>Selecting System build configuration and setting compilation option</i>
+    </p>
+1. Normally, you would build the project, but since it will take long time **you will NOT BUILD it here**
+
 ### Run the Application on F1
 **Since the System build and AFI availability takes considerable amount of time, a precompiled version is provided. Use the precompiled solution directory to verify the functionality.**  
 
@@ -227,7 +249,7 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
    ```
       cd /home/centos/sources/gui_flow_solution
    ```  
-1. Run the following commands to load the AFI and execute the application to verify the functionality  
+1. Run the following commands to load the runtime environment and execute the application  
    ```
       sudo sh
       source /opt/xilinx/xrt/setup.sh
@@ -240,8 +262,58 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
     <p align = "center">
     <i>The Execution output</i>
     </p>  
-1. Enter **exit** in the teminal window to exit out of _sudo shell_  
-1. Close the SDx by selecting **File &gt; Exit**
+1. It will also create two csv files; one for profile and another application timeline analysis
+1. Run the following two commands to create \*.xprf (Xilinx profile), and timeline.wdb and timeline.wcfg files
+   ```
+      sdx_analyze profile --input sdaccel_profile_summary.csv -o profile
+      sdx_analyze trace --input sdaccel_timeline_trace.csv -o timeline
+   ```
+
+### Perform Profiling and Application Timeline Analysis on AWS F1 Using the Generate Files
+**You will use the generated timeline and profile files to perform the analysis**
+
+1. Select **File > New SDx Project**
+1. Go through the wizard to create **gui_flow_test** with **Empty Application** template
+1. Select **File > Open File...**
+1. Browse to **/home/centos/sources/gui_flow_solution** and select **profile.xprf, timeline.wcfg, timeline.wdb** and click **OK**
+The _Waveform and Profile Summary tabs_ will open
+1. Select the profile report will open.
+    <p align="center">
+    <img src ="./images/guiflow_lab/FigGUIflowLab-27.png"/>
+    </p>
+    <p align = "center">
+    <i>Top operation information in the profile summary</i>
+    </p>
+1. Click on the **Kernels &amp; Compute Units** tab and observe the number of Enqueues (1), and the execution time (0.3961 ms). Also understand the **Compute Uni Utilization** and **Compute Units: Stall Information** section
+    <p align="center">
+    <img src ="./images/guiflow_lab/FigGUIflowLab-28.png"/>
+    </p>
+    <p align = "center">
+    <i>Kernel and compute unit information in the profile summary</i>
+    </p>
+1. Click on the **Data Transfers** tab and observe the data transfer rate between the host and memory, and the data transfer rate between kernels and global memory
+    <p align="center">
+    <img src ="./images/guiflow_lab/FigGUIflowLab-29.png"/>
+    </p>
+    <p align = "center">
+    <i>Data transfer information in the profile summary</i>
+    </p>
+
+1. Double-click on the **Application Timeline** entry in the **Assistant** tab, expand all entries in the timeline graph and see various activities in each fucntional units of the design
+    <p align="center">
+    <img src ="./images/guiflow_lab/FigGUIflowLab-30.png"/>
+    </p>
+    <p align = "center">
+    <i>Timeline graph showing various activities in various region of the system</i>
+    </p>
+1. Using left-button mouse click, select region around 1.192 ms to 1.194 ms region to zoom in into the view
+1. Observe various stall taking palce
+    <p align="center">
+    <img src ="./images/guiflow_lab/FigGUIflowLab-31.png"/>
+    </p>
+    <p align = "center">
+    <i>Zoomed in view showing various activites</i>
+    </p>
 
 ## Conclusion 
 
@@ -264,3 +336,45 @@ This will build the project under the **System** directory. The built project wi
 
 **Once the full system is built, you can create an AFI by following the steps listed <a href="Creating_AFI.md">here</a>**
 
+## Appendix: Performing Application Timeline and Profile Analysis
+**If you are using your own instance, follow below steps to perform the analysis after you have have build the full bitstream and created AFI** 
+
+1. Replace (after changing the extension) the **binary_container_1.xclbin** file with the registered **binary_container_1.awsxclbin** in the **System** directory
+1. Before you can run the application in hardware on AWS F1, you will need to start the SDx program in the **su** mode
+1. Run the following commands to setup the environment and start the SDx program  
+   ```
+      sudo sh
+      source /opt/xilinx/xrt/setup.sh
+      /opt/Xilinx/SDx/2018.2.op2258646/bin/sdx&
+   ```
+1. Click on the **Browse…** button of the _Workspace_ window, browse to **/home/centos/aws-fpga/GUI\_flow**, click **OK**   
+The _gui_flow_example_ project will open
+1. In the **Assistant** tab, right-click on **System** and select **Run > Run Configurations**
+1. In the _Main_ tab, select **System** as the _Run Configuration_
+    <p align="center">
+    <img src ="./images/guiflow_lab/FigGUIflowLab-24.png"/>
+    </p>
+    <p align = "center">
+    <i>Selecting System as the active run configuration</i>
+    </p>  
+1. In the _Profile_ tab, make sure that Enable Profiling option is selected
+1. Click on the drop-down button of the **Generate timeline trace report:** field and select **Yes**
+    <p align="center">
+    <img src ="./images/guiflow_lab/FigGUIflowLab-25.png"/>
+    </p>
+    <p align = "center">
+    <i>Selecting to generate timeline trace report</i>
+    </p>  
+1. Select **Internal Dataflow Stall** as an option of _Collect State Trace_
+    <p align="center">
+    <img src ="./images/guiflow_lab/FigGUIflowLab-26.png"/>
+    </p>
+    <p align = "center">
+    <i>Selecting type of trace to collect</i>
+    </p>  
+1. In the **Arguments** tab, make sure that **../binary_container_1.xclbin** is selected
+1. In the **Environment** tab make sure that the **LD_LIBRARY_PATH** is set to **/opt/xilinx/xrt/lib**
+1. Click **Apply** and **Run** to execute the application through GUI
+1. Once, the execution is completed, double-click on the **Profile Summary** entry under **System &gt; gui\_flow\_example-Default** in the **Assistant** tab  
+    The profile report will open.
+1. Double-click on the **Application Timeline** entry in the **Assistant** tab, expand all entries in the timeline graph and see various activities in each fucntional units of the design
