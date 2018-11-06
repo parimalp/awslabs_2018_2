@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This lab is continuation of the previous (**RTL Kernel Wizard**) lab. You will add ChipScope cores to monitor the acitivities taking place at the kernel interface level and perform software debugging using SDx debug capabilities.
+This lab is continuation of the previous (**<a href="rtl_kernel_wizard_lab.md">RTL-Kernel Wizard Lab</a>**) lab. You will add ChipScope cores to monitor the acitivities taking place at the kernel interface level and perform software debugging using SDx debug capabilities.
 
 ## Objectives
 
