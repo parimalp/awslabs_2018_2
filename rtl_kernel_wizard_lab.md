@@ -249,6 +249,14 @@ This will build the project including rtl\_kernel\_example.exe file under the Em
 
 In this lab, you used the RTL Kernel wizard to create a sample adder application. You saw that the wizard creates an RTL IP with the specified number of AXI master ports. You performed HW emulation and analyzed the application timeline. You finally ran the application on an AWS F1 instance and validated the functionality.
 
+---------------------------------------
+
+<p align="center"><b>
+Start the next lab: <a href="debug_lab.md">6. Debug Lab</a>
+</b></p>
+
+---------------------------------------
+
 ## Appendix: Build Full Hardware 
 **Set the build configuration to System and build the system (Note that since the building of the project takes over two hours skip this step in the workshop environment).**  
 
