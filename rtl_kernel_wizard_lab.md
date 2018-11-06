@@ -199,7 +199,9 @@ This will build the project including rtl\_kernel\_example.exe file under the Em
     <p align = "center">
     <i>Unpopulated Arguments tab</i>
     </p>  
-1. Click on the **Automatically add binary container(s) to arguments** check box, click **Apply**, and then click **Run** to run the application
+1. Click on the **Automatically add binary container(s) to arguments** check box
+1. Click on the **Environment** tab, and change the _LD\_LIBRARY\_PATH_ variable setting to **/opt/xilinx/xrt/lib** and click **OK**
+1. click **Apply**, and then click **Run** to run the application
     <p align="center">
     <img src ="./images/rtlkernel_lab/FigRTLKernelLab-19.png"/>
     </p>
@@ -213,7 +215,7 @@ This will build the project including rtl\_kernel\_example.exe file under the Em
     <p align = "center">
     <i>Hardware emulation run output</i>
     </p>  
-1. Double-click on the **Application Timeline** entry in the _Reports_ tab, expand all entries in the timeline graph, zoom appropriately and observe the transactions
+1. In the **Assistant** tab, expand **Emulation-HW > rtl_kernel_example-Default**, and double-click on the **Application Timeline** entry, expand all entries in the timeline graph, zoom appropriately and observe the transactions
     <p align="center">
     <img src ="./images/rtlkernel_lab/FigRTLKernelLab-21.png"/>
     </p>
