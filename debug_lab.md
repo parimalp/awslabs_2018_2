@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This lab is continuation of the previous (**RTL Kernel Wizard**) lab. You will add ChipScope cores to monitor the acitivities taking place at the kernel interface level. 
+This lab is continuation of the previous (**RTL Kernel Wizard**) lab. You will add ChipScope cores to monitor the acitivities taking place at the kernel interface level and perform software debugging using SDx debug capabilities.
 
 ## Objectives
 
@@ -187,6 +187,10 @@ Lines 359-389 reads the results and checks if the read result is same as expecte
 Notice that the next few lines will release the buffers, program, kernel, command queue, and context before printing test successful message
 1. Click **F8** to complete the execution
 1. Close the SDx program
+
+## Conclusion
+
+In this lab, you used ChipScope Debug bridge and cores to perform hardware debugging. You also performed software debugging using SDx debug perspective.
 
 
 
