@@ -152,6 +152,7 @@ This will build the project including Optimization\_lab\_example.exe file under 
 1. Select the **Arguments** tab
 1. Click on the **Automatically add binary container(s) to arguments** check box  
 This will add **../binary\_container\_1.xclbin**
+1. Click on the **Environment** tab and change the _LD\_LIBRARY\_PATH_ to **/opt/xilinx/xrt/lib** and click **OK**
 1. Click **Apply** and then click **Run**  
 The application will be run and the output will be displayed in the Console tab
     <p align="center">
