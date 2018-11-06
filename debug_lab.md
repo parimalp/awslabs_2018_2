@@ -39,7 +39,7 @@ An Eclipse launcher window will appear asking you to select a directory as works
 1. Select **KVAdd**, right-click and select **Settings...**
 1. In the **Hardware Function Settings** window, click on the _ChipScope Debug_ option for the _KVAdd_ kernel
     <p align="center">
-    <img src ="./images/rtlkernel_lab/FigDebugLab-1.png"/>
+    <img src ="./images/debug_lab/FigDebugLab-1.png"/>
     </p>
     <p align = "center">
     <i>Adding ChipScope Debug module</i>
@@ -52,7 +52,7 @@ An Eclipse launcher window will appear asking you to select a directory as works
       getc(stdin);
    ```
     <p align="center">
-    <img src ="./images/rtlkernel_lab/FigDebugLab-2.png"/>
+    <img src ="./images/debug_lab/FigDebugLab-2.png"/>
     </p>
     <p align = "center">
     <i>Modifying code to stop its execution before kernel is executed to start Vivado Hardware manager</i>
@@ -63,7 +63,7 @@ An Eclipse launcher window will appear asking you to select a directory as works
 1. Click **Run**
 The host application will start executing, loading bitstream, and pausing for the user input as coded on line 246
     <p align="center">
-    <img src ="./images/rtlkernel_lab/FigDebugLab-3.png"/>
+    <img src ="./images/debug_lab/FigDebugLab-3.png"/>
     </p>
     <p align = "center">
     <i>Paused execution</i>
@@ -75,6 +75,12 @@ The host application will start executing, loading bitstream, and pausing for th
       sudo fpga-start-virtual-jtag -P 10201 -S 0
    ```
 The Virtual JTAG XVC Server will start listining to TCP port 10201
+    <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-4.png"/>
+    </p>
+    <p align = "center">
+    <i>Paused execution</i>
+    </p>
 1. Start Vivado from another terminal window
 Click on Open Hardware Manager link
 Click Open Target > Open New Target
