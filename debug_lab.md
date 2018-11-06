@@ -163,6 +163,35 @@ Observe that the program finishes execution displaying **INFO: Test completed su
 1. Switch to the SDx GUI
 1. Comment out lines 246 and 247
 1. Save the file by typing **Ctrl-S**
+1. In the **Assistant** tab, right-click on **System** and select **Debug Configuration**
+1. Make sure that the Arguments tab shows **../binary_container_1.xclbin** entry
+1. Make sure that the Environment tab shows **/opt/xilinx/xrt/lib** in the _LD\_LIBRARY\_PATH_ field
+1. Click **Debug**  
+The host application will compile since we have modified it and a window will pop-up asking to switch to Debug perspective
+1. Click **Yes**  
+The program will be downloaded and execution will begin, halting at **main()** entry point
+1. In the main.c view scroll down to line 280 and double-click on the left border to set a breakpoint  
+At this point, three buffers would have been created
+    <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-14.png"/>
+    </p>
+    <p align = "center">
+    <i>Setting a breakpoint</i>
+    </p>  
+1. Click on the **Resume** button or press **F8**  
+The execution will resume and stop at the breakpoint
+At this point you can go to the Variables tab and see the contents of local variables visible in the current scope
+1. Click on the **Step Over** button or press **F6**  
+The execution will progress one statement at a time
+1. Continue pressing **F6** until you reach line number _359_ at which point the execution would have finished  
+Lines 359-389 reads the results and checks if the read result is same as expected.
+1. Set a breakpoint at line 389 and press **F8** to resume the execution  
+Notice that the next few lines will release the buffers, program, kernel, command queue, and context before printing test successful message
+1. Click **F8** to complete the execution
+1. Close the SDx program
+
+
+
 
 
 
