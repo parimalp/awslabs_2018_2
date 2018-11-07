@@ -274,7 +274,7 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
 
 1. Select **File > Open File...**
 1. Browse to **/home/centos/sources/gui_flow_solution** and select **profile.xprf** and **timeline.wdb** and click **OK**
-The _Waveform and Profile Summary tabs_ will open. In the Waveform tab, notice that the actual activities starts after 1,000 ms since the FPGA loading takes time
+The _Waveform and Profile Summary tabs_ will open. In the Waveform tab, notice that the actual activities starts after 4,960 ms since the FPGA loading takes time
 1. Run the application again from the command line and observe the output  
 It indicates the AFI is already loaded and so it is skipping the loading
     <p align="center">
