@@ -274,7 +274,7 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
 
 1. Select **File > Open File...**
 1. Browse to **/home/centos/sources/gui_flow_solution** and select **profile.xprf** and **timeline.wdb** and click **OK**
-The _Waveform and Profile Summary tabs_ will open. In the Waveform tab, notice that the actual activities starts after 10,000 ms since the FPGA loading takes time
+The _Waveform and Profile Summary tabs_ will open. In the Waveform tab, notice that the actual activities starts after 1,000 ms since the FPGA loading takes time
 1. Run the application again from the command line and observe the output  
 It indicates the AFI is already loaded and so it is skipping the loading
     <p align="center">
@@ -293,7 +293,7 @@ Notice that the activity starts at around 500 ms as no AFI loading took place.
     <p align = "center">
     <i>Top operation information in the profile summary</i>
     </p>
-1. Click on the **Kernels &amp; Compute Units** tab and observe the number of Enqueues (1), and the execution time (0.308 ms). Also understand the **Compute Uni Utilization** and **Compute Units: Stall Information** section
+1. Click on the **Kernels &amp; Compute Units** tab and observe the number of Enqueues (1), and the execution time (0.289 ms). Also understand the **Compute Uni Utilization** and **Compute Units: Stall Information** section
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-28.png"/>
     </p>
@@ -315,8 +315,7 @@ Notice that the activity starts at around 500 ms as no AFI loading took place.
     <p align = "center">
     <i>Timeline graph showing various activities in various region of the system</i>
     </p>
-1. Using left-button mouse click, select region around 1.127 ms to 1.128 ms region to zoom in into the view
-1. Observe various stall taking palce
+1. Using left-button mouse click, select region around 1.150 ms to 1.154 ms region to zoom in into the view
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-31.png"/>
     </p>
