@@ -163,7 +163,7 @@ Observe that the program finishes execution displaying **INFO: Test completed su
 1. Switch to the SDx GUI
 1. Comment out lines 246 and 247
 1. Save the file by typing **Ctrl-S**
-1. In the **Assistant** tab, right-click on **System** and select **Debug Configuration**
+1. In the **Assistant** tab, right-click on **System > Debug** and select **Debug Configuration**
 1. Make sure that the **Arguments** tab shows **../binary_container_1.xclbin** entry
 1. Make sure that the Environment tab shows **/opt/xilinx/xrt/lib** in the _LD\_LIBRARY\_PATH_ field
 1. Click **Debug**  
@@ -180,13 +180,47 @@ At this point, three buffers would have been created
     </p>  
 1. Click on the **Resume** button or press **F8**  
 The execution will resume and stop at the breakpoint  
-At this point you can go to the Variables tab and see the contents of local variables visible in the current scope
+At this point you can go to various tabs and see the contents in the current scope  
+Two of the important features of SDx debugging is examining command queues and memory buffers as the program execution progresses
 1. Click on the **Step Over** button or press **F6**  
 The execution will progress one statement at a time
-1. Continue pressing **F6** until you reach line number _359_ at which point the execution would have finished  
-Lines 359-389 reads the results and checks if the read result is same as expected.
-1. Set a breakpoint at line 389 and press **F8** to resume the execution  
-Notice that the next few lines will release the buffers, program, kernel, command queue, and context before printing test successful message
+1. Continue pressing **F6** until you reach line number _344_ at which point kernel would have finished execution
+1. Click on the Breakpoint entry in the **Debug** tab and then select **Memory Buffers** tab  
+Notice that three buffers are allocated, their IDs, DDR memory address, and sizes
+    <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-15.png"/>
+    </p>
+    <p align = "center">
+    <i>Memory buffers allocated</i>
+    </p>  
+1. Select the **Command Queue** tab and notice that there no commands enqued
+    <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-16.png"/>
+    </p>
+    <p align = "center">
+    <i>Setting a breakpoint</i>
+    </p>  
+Lines 344-348 creates commands to read the data and results
+1. Press **F6** to execute _clEnqueueReadBuffer_ command to create a read buffer command for reading operand _d\_A_  
+Notice the Command Queue tab shows one command submitted
+    <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-17.png"/>
+    </p>
+    <p align = "center">
+    <i>Setting a breakpoint</i>
+    </p>  
+1. Press **F6** to execute _clEnqueueReadBuffer_ command for reading operand _d\_B_  
+Notice the Command Queue tab shows two commands submitted
+    <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-18.png"/>
+    </p>
+    <p align = "center">
+    <i>Setting a breakpoint</i>
+    </p>  
+1. Set a breakpoint at line _397_ and press **F8** to resume the execution  
+Notice that the Command Queue tab still shows entries
+1. Press **F6** to execute _clReleaseKernel_ command   
+Notice the Command Queue tab is empty as all operations are completed
 1. Click **F8** to complete the execution
 1. Close the SDx program
 
