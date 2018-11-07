@@ -210,16 +210,24 @@ This will build the project including Optimization\_lab\_example.exe file under 
 If no argument was assigned then you would have to explicitly assign the **xclbin** by clicking on the _Automatically add binary container(s) to arguments_, and click **Apply**
 1. Click **Run** to run the application  
 1. The Console tab shows that the test was completed successfully along with the data transfer rate  
-Notice that Vivado was started and the 
     <p align="center">
     <img src ="./images/optimization_lab/FigOptimizationLab-15.png"/>
     </p>
     <p align = "center">
     <i>Hardware emulation run output</i>
     </p>  
+Notice that Vivado was started and the simulation waveform window is updated.
+1. Click on the Zoom full button and scroll down the waveform window to see activites taking place in the kernel  
+Since there is no optimzation is done observe that the execution is sequential
+    <p align="center">
+    <img src ="./images/optimization_lab/FigOptimizationLab-15-1.png"/>
+    </p>
+    <p align = "center">
+    <i>Vivado simulator output</i>
+    </p>  
 
 ### Understand the HLS Report, profile summary, and Application Timeline
-1. In the **Assistant** tab, expand **optimization\_lab\_example** &gt; **Emulation-HW** &gt; **binary\_container\_1** &gt; **optimization\_lab\_example-Default**
+1. In the **Assistant** tab, expand **optimization\_lab\_example** &gt; **Emulation-HW** &gt; **optimization\_lab\_example-Default**
 1. Double-click the **Profile Summary** report and review it
     <p align="center">
     <img src ="./images/optimization_lab/FigOptimizationLab-16.png"/>
@@ -278,9 +286,17 @@ Observe that the three functions are communicating using **hls::streams** object
     - Interval (min/max): 2069
 ###  Run the Hardware Emulation
 1. Run the application by clicking the Run button (![alt tag](./images/Fig-run.png))  
-Wait for the run to finish with RUN COMPLETE message
-1. In the **Assistant** tab, expand **optimization\_lab\_example** &gt; **Emulation-
-2. HW** &gt; **optimization\_lab\_example-Default**  and double-click the **Profile Summary** report
+Wait for the run to finish with RUN COMPLETE message  
+Notice the Vivado simulator starts, displaying various activites  
+Since there is dataflow optimzation done observe concurrent execution of reading, writing, pipelining and kernel running 
+    <p align="center">
+    <img src ="./images/optimization_lab/FigOptimizationLab-20-1.png"/>
+    </p>
+    <p align = "center">
+    <i>Vivado simulator output of the DATAFLOW optimized kernel</i>
+    </p>  
+
+1. In the **Assistant** tab, expand **optimization\_lab\_example > Emulation-HW > optimization\_lab\_example-Default**  and double-click the **Profile Summary** report
 1. Select the **Kernels &amp; Compute Units** tab.  
 Compare the **Kernel Total Time (ms)** with the results from the un-optimized run
     <p align="center">
@@ -326,15 +342,17 @@ The green segments at the bottom indicate when the IDCT kernel is running
 **#define NUM\_SCHED 6**
 1. Save the file
 ### Run the Hardware Emulation.
+1. Change the run configuration by unchecking the **Use waveform for kernel debugging** option, click **Apply**, and then click **Close**
 1. Run the application by clicking the Run button (![alt tag](./images/Fig-run.png))  
     - Since only the idct.cpp file was changed, the incremental makefile rebuilds only the host code before running emulation
     - This results in a much faster iteration loop since it is usually the compilation of the kernel to hardware which takes the most time
-1. In the **Assistant** tab, expand **optimization\_lab\_example** &gt; **Emulation-HW** &gt; **optimization\_lab\_example-Default**
-1.* Double-click the **Application Timeline** report  
+1. In the **Assistant** tab, expand **optimization\_lab\_example > Emulation-HW > optimization\_lab\_example-Default**
+1. Double-click the **Application Timeline** report  
 
 Observe how **software pipelining** enables overlapping of data transfers and kernel execution.
     <p align="center">
     <img src ="./images/optimization_lab/FigOptimizationLab-22.png"/>
+    <img src ="./images/optimization_lab/FigOptimizationLab-22-1.png"/>
     </p>
     <p align = "center">
     <i>Application Timeline after the host code optimization</i>
