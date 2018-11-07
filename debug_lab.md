@@ -33,30 +33,7 @@ After completing this lab, you will be able to:
 1. An Eclipse launcher window will appear asking you to select a directory as workspace. Click on the **Browse…** button, browse to **/home/centos/sources/debug\_lab**, click **OK** twice
 
 ### Hardware Debugging
-### Skip the following section of adding ChipScope Debug core as it is already added in the pre-compiled directory
-#### Add ChipScope Debug core      
-1. In the **Assistant** tab, expand **System > binary_container_1 > KVadd**
-1. Select **KVAdd**, right-click and select **Settings...**
-1. In the **Hardware Function Settings** window, click on the _ChipScope Debug_ option for the _KVAdd_ kernel
-    <p align="center">
-    <img src ="./images/debug_lab/FigDebugLab-1.png"/>
-    </p>
-    <p align = "center">
-    <i>Adding ChipScope Debug module</i>
-    </p>
-1. Click **Apply** and **OK**
-1. In the **Project Explorer** tab, expand **src > sdx_rtl_kernel > KVAdd** and double-click on the **main.c** to open it in the editor window
-1. Go to line 246 and enter the following lines of code which will pause the host software execution after creating kernel but before allocating buffer
-   ```
-      printf("\nPress ENTER to continue after setting up ILA trigger...");
-      getc(stdin);
-   ```
-    <p align="center">
-    <img src ="./images/debug_lab/FigDebugLab-2.png"/>
-    </p>
-    <p align = "center">
-    <i>Modifying code to stop its execution before kernel is executed to start Vivado Hardware manager</i>
-    </p>
+### Review the Appendix section to understand how to add ChipScope Debug bridge core. It is already added in the pre-compiled design
 #### Run the application
 1. In the **Assistant** tab, expand **System > Run** and select **Run Configuration**
 1. Make sure that the Arguments tab shows **../binary_container_1.xclbin** entry
@@ -228,6 +205,30 @@ Notice the Command Queue tab is empty as all operations are completed
 
 In this lab, you used ChipScope Debug bridge and cores to perform hardware debugging. You also performed software debugging using SDx debug perspective.
 
+## Appendix
+### Steps to Add ChipScope Debug core      
+1. In the **Assistant** tab, expand **System > binary_container_1 > KVadd**
+1. Select **KVAdd**, right-click and select **Settings...**
+1. In the **Hardware Function Settings** window, click on the _ChipScope Debug_ option for the _KVAdd_ kernel
+    <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-1.png"/>
+    </p>
+    <p align = "center">
+    <i>Adding ChipScope Debug module</i>
+    </p>
+1. Click **Apply** and **OK**
+1. In the **Project Explorer** tab, expand **src > sdx_rtl_kernel > KVAdd** and double-click on the **main.c** to open it in the editor window
+1. Go to line 246 and enter the following lines of code which will pause the host software execution after creating kernel but before allocating buffer
+   ```
+      printf("\nPress ENTER to continue after setting up ILA trigger...");
+      getc(stdin);
+   ```
+    <p align="center">
+    <img src ="./images/debug_lab/FigDebugLab-2.png"/>
+    </p>
+    <p align = "center">
+    <i>Modifying code to stop its execution before kernel is executed to start Vivado Hardware manager</i>
+    </p>
 
 
 
