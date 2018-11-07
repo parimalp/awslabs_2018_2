@@ -33,7 +33,7 @@ After completing this lab, you will be able to:
 1. An Eclipse launcher window will appear asking you to select a directory as workspace. Click on the **Browse…** button, browse to **/home/centos/sources/debug\_lab**, click **OK** twice
 
 ### Hardware Debugging
-### Review the Appendix section to understand how to add ChipScope Debug bridge core. It is already added in the pre-compiled design
+#### Review the Appendix section to understand how to add ChipScope Debug bridge core. It is already added in the pre-compiled design
 #### Run the application
 1. In the **Assistant** tab, expand **System > Run** and select **Run Configuration**
 1. Make sure that the Arguments tab shows **../binary_container_1.xclbin** entry
