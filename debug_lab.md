@@ -58,7 +58,7 @@ After completing this lab, you will be able to:
     <i>Modifying code to stop its execution before kernel is executed to start Vivado Hardware manager</i>
     </p>
 #### Run the application
-1. In the **Assistant** tab, right-click on **System** and select **Run Configuration**
+1. In the **Assistant** tab, expand **System > Run** and select **Run Configuration**
 1. Make sure that the Arguments tab shows **../binary_container_1.xclbin** entry
 1. Make sure that the Environment tab shows **/opt/xilinx/xrt/lib** in the _LD\_LIBRARY\_PATH_ field
 1. Click **Run**
@@ -148,7 +148,7 @@ Observe that the program finishes execution displaying **INFO: Test completed su
     <p align = "center">
     <i>Triggered waveform</i>
     </p>  
-1. Expand **Slot_0, slot_1,** and **slot_2 groups**, zoom in region of about _450 to 1000_, and observe the data transfer taking place on each channels. Also note the addresses from where data are read and results are written into  
+1. Expand **Slot_0, slot_1,** and **slot_2** groups, zoom in region of about _450 to 1000_, and observe the data transfer taking place on each channels. Also note the addresses from where data are read and results are written into  
     <p align="center">
     <img src ="./images/debug_lab/FigDebugLab-13.png"/>
     </p>
