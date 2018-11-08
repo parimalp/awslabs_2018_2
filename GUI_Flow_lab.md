@@ -45,7 +45,7 @@ An Eclipse launcher window will appear asking to select a directory as workspace
     <i>The SDx IDE window</i>
     </p>
 1. Click on the **Add Custom Platform** link on the _Welcome_ page
-1. Click on the **Add Custom Platform** button, browse to **/home/centos/src/project_data/aws-fpga/SDAccel/aws\_platfom/xilinx\_aws-vu9p-f1-04261818\_dynamic\_5\_0**, and click **OK**
+1. Click on the **Add Custom Platform** button, browse to **/home/centos/aws-fpga/SDAccel/aws\_platfom/xilinx\_aws-vu9p-f1-04261818\_dynamic\_5\_0**, and click **OK**
     <p align="center">
     <img src ="./images/FigPlatform.png"/>
     </p>
