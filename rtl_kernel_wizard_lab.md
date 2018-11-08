@@ -66,7 +66,7 @@ Note the aws-vu9p-f1-04261818 board is displayed as the hardware platform
 
 ### Create RTL\_Kernel Project using RTL Kernel Wizard      
 1. Make sure the **project.sdx** under _rtl\_kernel\_example_ in the **Project Explorer** tab is selected
-1. Select **Xilinx &gt; Create RTL Kernel…**  
+1. Select **Xilinx &gt; RTL Kernel Wizard…**  
 Note that the Create RTL Kernel Wizard will be invoked displaying the Welcome screen
     <p align="center">
     <img src ="./images/rtlkernel_lab/FigRTLKernelLab-4.png"/>
