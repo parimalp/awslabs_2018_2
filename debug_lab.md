@@ -170,14 +170,13 @@ Notice that three buffers are allocated, their IDs, DDR memory address, and size
     <p align = "center">
     <i>Memory buffers allocated</i>
     </p>  
-1. Select the **Command Queue** tab and notice that there no commands enqued
+1. Select the **Command Queue** tab and notice that there no commands enqued. Lines 344-348 creates commands to read the data and results
     <p align="center">
     <img src ="./images/debug_lab/FigDebugLab-16.png"/>
     </p>
     <p align = "center">
     <i>Setting a breakpoint</i>
     </p>  
-Lines 344-348 creates commands to read the data and results
 1. Press **F6** to execute _clEnqueueReadBuffer_ command to create a read buffer command for reading operand _d\_A_  
 Notice the Command Queue tab shows one command submitted
     <p align="center">
@@ -197,7 +196,7 @@ Notice the Command Queue tab shows two commands submitted
 1. Set a breakpoint at line _397_ and press **F8** to resume the execution  
 Notice that the Command Queue tab still shows entries
 1. Press **F6** to execute _clReleaseKernel_ command   
-Notice the Command Queue tab is empty as all operations are completed
+Notice the Memory Buffers tab is empty as all memories are released
 1. Click **F8** to complete the execution
 1. Close the SDx program
 
