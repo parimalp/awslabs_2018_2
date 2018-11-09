@@ -86,7 +86,7 @@ The Vivado Hardware Manager will open showing _Hardware_, _Waveform_, _Settings-
     <p align = "center">
     <i>Hardware Manager</i>
     </p>  
-1. In the _Hardware Device Properties_ view, click on browse button of the **Probes file**, browse to **rtl_kernel_example/System** under the **/home/centos/sources/debug_lab** folder, select **top_sp.ltx** entry and click **OK**  
+1. In the _Hardware Device Properties_ view, click on browse button of the **Probes file**, browse to **/home/centos/sources/debug_lab/rtl_kernel_example/System** folder, select **top_sp.ltx** entry and click **OK**  
 Notice four (Slot_0 to Slot_3) probes are filled in the Waveform window
 1. Click on the _Run Trigger immediate_ button and observe the waveform window is filled indicating the four channels are in _Inactive_ state
      <p align="center">
