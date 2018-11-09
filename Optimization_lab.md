@@ -135,7 +135,7 @@ Note: all objects accessed through a **clCreate..**. function call should be rel
 1. In the Project Explorer pane, right-click the project **optimization\_lab\_example** and select the **C/C++ Settings**
 1. Select **C/C++ Build** &gt; **Settings** in the left pane
 1. Select the **Miscellaneous** under **SDx XOCC Kernel Linker**
-1. Using the gedit editor, open the file **xocc\_linker\_flag.txt** from the **/home/centos/sources/optimization\_lab/** directory, copy all the text and paste it in the **Other flags** field
+1. Using the gedit editor, open the file **xocc\_linker\_flag.txt** from the **/home/centos/sources/optimization\_lab/** directory, copy --sp krnl\_idct_1.m\_axi\_gmem:bank0 --sp krnl\_idct\_1.m\_axi\_gmem1:bank0 --sp krnl\_idct\_1.m\_axi\_gmem2:bank1 and paste it in the **Other flags** field. Make sure that there no control characters at the end of the string
     <p align="center">
     <img src ="./images/optimization_lab/FigOptimizationLab-8.png"/>
     </p>
@@ -363,9 +363,12 @@ Note: system tasks might slow down communication between the application and the
 ###  Run the Application on F1
 **Since the System build and AFI availability takes considerable amount of time, a precompiled version is provided. Use the precompiled solution directory to verify the functionality**  
 
-1. Change to the solution directory by executing the following command  
+1. Open a new terminal window, source sdaccel environment settings, and change to the solution directory by executing the following commands  
    ```
-      cd /home/centos/sources/optimization_lab_solution
+     cd ~/aws-fpga		  
+     source sdaccel_setup.sh		  
+     source $XILINX_SDX/settings64.sh	  
+     cd /home/centos/sources/optimization_lab_solution
    ```  
 1. Run the following commands to load the AFI and execute the application to verify the functionality
    ```
