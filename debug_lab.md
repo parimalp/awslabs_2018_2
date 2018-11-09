@@ -162,7 +162,7 @@ Two of the important features of SDx debugging is examining command queues and m
 1. Click on the **Step Over** button or press **F6**  
 The execution will progress one statement at a time
 1. Continue pressing **F6** until you reach line number _344_ at which point kernel would have finished execution
-1. Click on the Breakpoint entry in the **Debug** tab and then select **Memory Buffers** tab  
+1. Click on the _Suspend : Step_ entry in the **Debug** tab and then select **Memory Buffers** tab  
 Notice that three buffers are allocated, their IDs, DDR memory address, and sizes
     <p align="center">
     <img src ="./images/debug_lab/FigDebugLab-15.png"/>
