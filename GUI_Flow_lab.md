@@ -222,7 +222,7 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
     </p>
 
 ### Setup for System Build
-**Since hardware bitstream genetaion takes over two hours, you will go through basic steps involved in setting up System build in this section so you can perform profiling and application timeline analysis on AWS using the already pre-generated awsxclbin.**
+**Since hardware bitstream generation takes over two hours, you will go through basic steps involved in setting up System build in this section so you can perform profiling and application timeline analysis on AWS using the already pre-generated awsxclbin.**
 
 1. Either select **Project &gt; Build Configurations &gt; Set Active &gt; System** or click on the drop-down button of _Active build configuration_ and select **System**
 1. Click on the drop-down button of Hardware optimization and select -Oquick option which will make compilation relatively faster
@@ -263,8 +263,11 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
     <i>The Execution output</i>
     </p>  
 1. It will also create two csv files; one for profile and another application timeline analysis
-1. Run the following two commands to create \*.xprf (Xilinx profile), and timeline.wdb and timeline.wcfg files
+1. Open another terminal window (_non-sh_), source the environment settings, and execute the following two commands to create \*.xprf (Xilinx profile), and timeline.wdb and timeline.wcfg files
    ```
+      cd ~/aws-fpga		  
+      source sdaccel_setup.sh		  
+      source $XILINX_SDX/settings64.sh	  
       sdx_analyze profile --input sdaccel_profile_summary.csv -o profile
       sdx_analyze trace --input sdaccel_timeline_trace.csv -o timeline
    ```
@@ -275,7 +278,7 @@ Note the _aws-vu9p-f1-04261818_ under the board column is displayed
 1. Select **File > Open File...**
 1. Browse to **/home/centos/sources/gui_flow_solution** and select **profile.xprf** and **timeline.wdb** and click **OK**
 The _Waveform and Profile Summary tabs_ will open. In the Waveform tab, notice that the actual activities starts after 4,960 ms since the FPGA loading takes time
-1. Run the application again from the command line and observe the output  
+1. Run the application again from the command line of the **sh** terminal window and observe the output  
 It indicates the AFI is already loaded and so it is skipping the loading
     <p align="center">
     <img src ="./images/guiflow_lab/FigGUIflowLab-21-1.png"/>
@@ -283,7 +286,7 @@ It indicates the AFI is already loaded and so it is skipping the loading
     <p align = "center">
     <i>The Execution output of the second time running</i>
     </p>  
-1. Generate the profile and trace files as done earlier
+1. Generate the profile and trace files from the _non-sh_ terminal window as done earlier
 1. Close the Waveform and Profile Summary tabs and open the two files again  
 Notice that the activity starts at around 500 ms as no AFI loading took place.
 1. Select the **Profile Summary** tab and observe the Total Data Transfer between Kernels and Global Memory, and Top Kernel Execution Duration  
