@@ -173,6 +173,7 @@ Notice that _sdx\_rtl\_kernel\_wizard_ folder and its hierarchy has been added a
 The _main_ function is defined on line 60. The number of words it transfers is 4096. Lines 96 to 107 fills the source operands and expected result. Lines 200-244 deals with loading xclbin and creating kernel. Lines 248-266 creates the buffers in the device memory. Lines 319-333 sets arguments, executes the kernel, and waits for it to finish. Lines 346-385 reads the data and compares them. Lines 391-401 releases the memory, program, and kernel.
 
 ### Add binary container and kernel, select the Emulation-HW build configuration, and build the project
+1. Select **project.sdx** in the _Project Explorer_ tab to see the project settings page
 1. Click on the **Add Binary Container** button (![alt tag](./images/Fig-binary_container.png))  
 Notice the _binary\_container\_1_ is added to the project. Since the design has RTL IP, the binary container does not have further hierarchy
     <p align="center">
